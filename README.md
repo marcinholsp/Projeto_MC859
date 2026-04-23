@@ -50,7 +50,7 @@ O grafo é **direcionado**: uma aresta **A → B** indica que o pacote A depende
 │   ├── pypi_dependency_graph.gexf      ← mesma instância, formato GEXF
 │   ├── stats.json                      ← métricas em JSON
 │   └── build_log.txt                   ← log da coleta
-└── figures/
+└── assets/
     ├── degree_distribution.png
     ├── scc_distribution.png
     └── top_packages.png
