@@ -61,17 +61,17 @@ O grafo é **direcionado**: uma aresta **A → B** indica que o pacote A depende
 ## Visualizações
 
 ### Distribuição de graus
-![Distribuição de graus](figures/degree_distribution.png)
+![Distribuição de graus](assets/degree_distribution.png)
 
 A distribuição segue uma lei de potência (*power-law*) em escala log-log, com expoentes −1,13 (in-degree) e −1,44 (grau total), característica de redes livres de escala (*scale-free*). Hubs como `typing-extensions` (in-degree 495) e `requests` (253) concentram a maior parte das dependências.
 
 ### Distribuição das CFCs
-![Distribuição das CFCs](figures/scc_distribution.png)
+![Distribuição das CFCs](assets/scc_distribution.png)
 
 99,94% das CFCs são singletons, confirmando que o ecossistema PyPI é essencialmente acíclico — dependências circulares são raras. Apenas 2 CFCs possuem mais de um vértice (tamanhos 2 e 8).
 
 ### Top 20 pacotes mais dependidos
-![Top 20](figures/top_packages.png)
+![Top 20](assets/top_packages.png)
 
 ---
 
