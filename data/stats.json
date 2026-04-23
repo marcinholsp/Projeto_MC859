@@ -1,0 +1,96 @@
+{
+  "n_vertices": 3359,
+  "n_arestas": 9659,
+  "grau_medio": 5.75,
+  "in_degree_medio": 2.88,
+  "out_degree_medio": 2.88,
+  "in_degree_max": 495,
+  "out_degree_max": 162,
+  "n_sccs": 3351,
+  "maior_scc": 8,
+  "n_singletons_scc": 3349,
+  "n_wccs": 375,
+  "maior_wcc": 2948,
+  "top_20_in_degree": [
+    [
+      "typing-extensions",
+      495
+    ],
+    [
+      "requests",
+      253
+    ],
+    [
+      "packaging",
+      215
+    ],
+    [
+      "numpy",
+      215
+    ],
+    [
+      "pyobjc-core",
+      163
+    ],
+    [
+      "pydantic",
+      161
+    ],
+    [
+      "pyobjc-framework-cocoa",
+      150
+    ],
+    [
+      "pyyaml",
+      138
+    ],
+    [
+      "protobuf",
+      129
+    ],
+    [
+      "opentelemetry-api",
+      125
+    ],
+    [
+      "httpx",
+      106
+    ],
+    [
+      "python-dateutil",
+      102
+    ],
+    [
+      "click",
+      99
+    ],
+    [
+      "grpcio",
+      90
+    ],
+    [
+      "urllib3",
+      82
+    ],
+    [
+      "cryptography",
+      82
+    ],
+    [
+      "jinja2",
+      81
+    ],
+    [
+      "opentelemetry-instrumentation",
+      78
+    ],
+    [
+      "google-auth",
+      76
+    ],
+    [
+      "six",
+      75
+    ]
+  ]
+}
