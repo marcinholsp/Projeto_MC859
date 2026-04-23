@@ -2,6 +2,8 @@
 
 Análise de Resiliência e Propagação de Vulnerabilidades em Grafos de Dependências do Ecossistema Python  
 **Projeto MC859 — UNICAMP, 2026**
+### Aluno: Márcio Levi Sales Prado
+### RA:183680
 
 ---
 
