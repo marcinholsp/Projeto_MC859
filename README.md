@@ -57,6 +57,7 @@ O grafo é **direcionado**: uma aresta **A → B** indica que o pacote A depende
 │   ├── build_log.txt                        ← log da coleta do grafo
 │   └── vuln_fetch_log.txt                   ← log da coleta de vulnerabilidades
 └── figures/
+
     ├── degree_distribution.png
     ├── scc_distribution.png
     ├── top_packages.png
