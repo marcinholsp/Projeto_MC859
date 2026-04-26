@@ -3,7 +3,7 @@
 Análise de Resiliência e Propagação de Vulnerabilidades em Grafos de Dependências do Ecossistema Python  
 **Projeto MC859 — UNICAMP, 2026**
 ### Aluno: Márcio Levi Sales Prado
-### RA:183680
+### RA: 183680
 
 ---
 
@@ -17,20 +17,21 @@ O grafo é **direcionado**: uma aresta **A → B** indica que o pacote A depende
 
 ## Instâncias (grafos)
 
-| Arquivo | Formato | Vértices | Arestas | Download |
-|---------|---------|----------|---------|----------|
-| `pypi_dependency_graph.graphml` | GraphML | 3.359 | 9.662 | [graphml](data/pypi_dependency_graph.graphml) |
-| `pypi_dependency_graph.gexf`    | GEXF    | 3.359 | 9.662 | [gexf](data/pypi_dependency_graph.gexf)    |
+| Arquivo | Formato | Vértices | Arestas |
+|---------|---------|----------|---------|
+| [`data/pypi_dependency_graph.graphml`](data/pypi_dependency_graph.graphml) | GraphML | 3.359 | 9.659 |
+| [`data/pypi_dependency_graph.gexf`](data/pypi_dependency_graph.gexf)       | GEXF    | 3.359 | 9.659 |
+| [`data/pypi_dependency_graph_vuln.graphml`](data/pypi_dependency_graph_vuln.graphml) | GraphML | 3.359 | 9.659 |
 
-> Se os arquivos ultrapassarem 100 MB, estarão disponíveis via Git LFS ou no link alternativo indicado abaixo.
+> O grafo `_vuln` inclui atributos de vulnerabilidade (OSV/CVSS) e downloads mensais em cada nó.
 
-### Métricas principais
+### Métricas principais do grafo
 
 | Métrica | Valor |
 |---------|-------|
 | Vértices | 3.359 |
-| Arestas | 9.662 |
-| Grau médio | 5,75 |
+| Arestas | 9.659 |
+| Grau médio (in + out) | 5,75 |
 | Componentes Fortemente Conexas (CFCs) | 3.351 |
 | Maior CFC | 8 vértices |
 | CFCs singleton | 3.349 |
@@ -42,29 +43,31 @@ O grafo é **direcionado**: uma aresta **A → B** indica que o pacote A depende
 ```
 /
 ├── README.md
+├── requirements.txt
 ├── scripts/
-│   ├── build_pypi_graph.py         ← coleta + construção do grafo
+│   ├── build_pypi_graph.py         ← coleta + construção do grafo (PyPI API)
 │   ├── analyze_pypi_graph.py       ← métricas + visualizações do grafo
-│   ├── fetch_vulnerabilities.py    ← consulta OSV API e anota o grafo com CVEs
-│   └── analyze_vulnerabilities.py  ← propagação de risco e figuras de vulnerabilidade
+│   ├── fetch_vulnerabilities.py    ← consulta OSV API (/v1/querybatch) e anota nós
+│   ├── fix_cvss_scores.py          ← corrige CVSS usando /v1/query individual + lib cvss
+│   ├── annotate_downloads.py       ← adiciona downloads mensais como atributo dos nós
+│   ├── analyze_vulnerabilities.py  ← modelo IC ponderado por downloads + figuras
+│   └── gerar_entrega_parcial.py    ← gera o PDF de entrega parcial (MC859)
 ├── data/
-│   ├── pypi_dependency_graph.graphml        ← instância principal
+│   ├── pypi_dependency_graph.graphml        ← instância principal (com downloads)
 │   ├── pypi_dependency_graph.gexf           ← mesma instância, formato GEXF
-│   ├── pypi_dependency_graph_vuln.graphml   ← grafo anotado com vulnerabilidades
-│   ├── pypi_vulns.json                      ← mapa bruto {pacote: [vulns]}
-│   ├── vuln_stats.json                      ← métricas de vulnerabilidade em JSON
-│   ├── stats.json                           ← métricas do grafo em JSON
-│   ├── build_log.txt                        ← log da coleta do grafo
-│   └── vuln_fetch_log.txt                   ← log da coleta de vulnerabilidades
-└── figures/
-
+│   ├── pypi_dependency_graph_vuln.graphml   ← grafo anotado com CVEs + downloads
+│   ├── pypi_vulns.json                      ← mapa {pacote: {vuln_count, max_cvss, …}}
+│   ├── downloads_map.json                   ← mapa {pacote: downloads_mensais}
+│   ├── vuln_stats.json                      ← métricas e top riscos em JSON
+│   └── stats.json                           ← métricas básicas do grafo
+└── assets/
     ├── degree_distribution.png
     ├── scc_distribution.png
     ├── top_packages.png
-    ├── vuln_risk_scores.png        ← top 20 pacotes por risco combinado
-    ├── vuln_cvss_distribution.png  ← distribuição de scores CVSS
-    ├── vuln_reach_vs_cvss.png      ← scatter: alcance de propagação × CVSS
-    └── vuln_cascade_example.png    ← cascata do pacote mais crítico
+    ├── vuln_risk_scores.png         ← top 20 por risco IC + downloads
+    ├── vuln_ic_vs_bfs.png           ← BFS estrutural vs alcance IC real
+    ├── vuln_downloads_vs_cvss.png   ← downloads afetados × CVSS
+    └── vuln_cascade_example.png     ← cascata IC do pacote mais crítico
 ```
 
 ---
@@ -88,33 +91,62 @@ A distribuição segue uma lei de potência (*power-law*) em escala log-log, com
 
 ## Análise de Vulnerabilidades
 
-Os scripts `fetch_vulnerabilities.py` e `analyze_vulnerabilities.py` implementam a etapa de avaliação de risco do projeto, consultando a [OSV API](https://osv.dev) para cada pacote do grafo.
-
 ### Atributos adicionados aos nós
 
 | Atributo | Descrição |
 |----------|-----------|
-| `vuln_count` | Número de vulnerabilidades conhecidas |
+| `downloads` | Downloads mensais (fonte: top-pypi-packages) |
+| `vuln_count` | Número de vulnerabilidades conhecidas (OSV) |
 | `vuln_ids` | IDs separados por `\|` (CVE-XXXX-XXXX, GHSA-…) |
-| `max_cvss` | Maior CVSS score encontrado (0.0 se nenhum) |
+| `max_cvss` | Maior CVSS score numérico (extraído do vetor via lib `cvss`) |
 | `vuln_summary` | Resumo da vulnerabilidade mais grave |
 
-### Score de risco combinado
+### Modelo de propagação — Independent Cascade (IC)
+
+Em vez de BFS/DFS determinístico, o projeto usa o **modelo Independent Cascade** ponderado por downloads, que responde à pergunta: *"se o pacote B for comprometido, com que probabilidade o pacote A (que depende de B) será afetado?"*
+
+A probabilidade de propagação da aresta B → A (no grafo reverso) é:
 
 ```
-risk = CVSS × log(alcance + 1) × log(in-degree + 1)
+p(B → A) = log1p(downloads_B) / Σ log1p(downloads_dep),  para dep ∈ dependências de A
 ```
 
-Pondera gravidade × alcance de propagação (BFS reverso) × centralidade estrutural.
+Interpreta-se como a fração do "peso de dependência" de A que vem de B. Pacotes pouco usados têm p pequeno, mesmo que sejam dependências de muitos outros.
+
+### Score de criticidade
+
+```
+risk(v) = CVSS(v) × log1p(downloads_IC_afetados) × log1p(downloads_próprios)
+```
+
+- **CVSS(v)**: gravidade real da vulnerabilidade
+- **downloads_IC_afetados**: média Monte Carlo (500 simulações) dos downloads dos pacotes infectados
+- **downloads_próprios**: uso real do pacote no ecossistema
+
+Esse score diferencia centralidade estrutural de impacto prático — um pacote com 1.000 dependentes mas sem uso real obtém score baixo.
+
+### Top 5 por risco (IC + downloads)
+
+| Pacote | CVSS | Downloads próprios | Downloads IC afetados | Risk score |
+|--------|------|--------------------|----------------------|------------|
+| urllib3 | 9,8 | 1,4 B | 2,6 B | 4477 |
+| numpy | 9,8 | 872 M | 2,1 B | 4330 |
+| pyyaml | 9,8 | 847 M | 577 M | 4064 |
+| cryptography | 9,1 | 958 M | 1,7 B | 4004 |
+| pygments | 9,5 | 745 M | 724 M | 3959 |
 
 ### Visualizações de vulnerabilidade
 
 | Figura | Descrição |
 |--------|-----------|
-| `vuln_risk_scores.png` | Top 20 pacotes por risco combinado |
-| `vuln_cvss_distribution.png` | Distribuição de severidade CVSS |
-| `vuln_reach_vs_cvss.png` | Scatter: alcance de propagação × CVSS |
-| `vuln_cascade_example.png` | Cascata BFS do pacote mais crítico |
+| `vuln_risk_scores.png` | Top 20 pacotes por risco IC + downloads |
+| `vuln_ic_vs_bfs.png` | Comparação BFS estrutural × alcance IC real |
+| `vuln_downloads_vs_cvss.png` | Downloads afetados pelo IC × CVSS |
+| `vuln_cascade_example.png` | Cascata IC do pacote mais crítico (urllib3) |
+
+![Risk scores](assets/vuln_risk_scores.png)
+
+![IC vs BFS](assets/vuln_ic_vs_bfs.png)
 
 ---
 
@@ -122,38 +154,26 @@ Pondera gravidade × alcance de propagação (BFS reverso) × centralidade estru
 
 ```bash
 # 1) Instalar dependências
-pip install networkx requests tqdm matplotlib numpy
+pip install networkx requests tqdm matplotlib numpy cvss
 
-# 2) Construir o grafo (faz requests à API pública do PyPI — ~10 min)
+# 2) Construir o grafo (requests à API pública do PyPI — ~10 min)
 python scripts/build_pypi_graph.py
 
 # 3) Analisar e gerar figuras do grafo
 python scripts/analyze_pypi_graph.py
 
-# 4) Coletar vulnerabilidades via OSV API e anotar o grafo (~5 min)
+# 4) Coletar vulnerabilidades via OSV API (batch)
 python scripts/fetch_vulnerabilities.py
 
-# 5) Analisar propagação de risco e gerar figuras de vulnerabilidade
+# 5) Corrigir CVSS scores com endpoint individual + biblioteca cvss
+python scripts/fix_cvss_scores.py
+
+# 6) Anotar nós com downloads mensais
+python scripts/annotate_downloads.py
+
+# 7) Modelo IC + figuras de risco ponderado por downloads
 python scripts/analyze_vulnerabilities.py
 ```
-
-Os scripts resolvem caminhos a partir da raiz do projeto, podendo ser executados diretamente de lá.
-
-### Parâmetros configuráveis em `build_pypi_graph.py`
-
-| Parâmetro | Padrão | Descrição |
-|-----------|--------|-----------|
-| `TOP_N_PACKAGES` | 3000 | Pacotes-semente do top downloads |
-| `MAX_NODES` | 8000 | Limite total de nós no grafo |
-| `REQUEST_DELAY` | 0.05s | Pausa entre requests (respeita rate-limit) |
-
-### Parâmetros configuráveis em `fetch_vulnerabilities.py`
-
-| Parâmetro | Padrão | Descrição |
-|-----------|--------|-----------|
-| `REQUEST_DELAY` | 0.05s | Pausa entre lotes (respeita rate-limit da OSV) |
-| `MAX_RETRIES` | 3 | Tentativas em caso de falha de rede |
-| `BATCH_SIZE` | 100 | Pacotes por chamada ao endpoint `/v1/querybatch` |
 
 ---
 
@@ -162,8 +182,8 @@ Os scripts resolvem caminhos a partir da raiz do projeto, podendo ser executados
 | Dado | Fonte |
 |------|-------|
 | Dependências e metadados | [API JSON do PyPI](https://pypi.org/pypi/{package}/json) |
-| Lista de pacotes mais baixados | [top-pypi-packages](https://hugovk.github.io/top-pypi-packages/) |
-| Vulnerabilidades | [OSV API](https://osv.dev) + [GitHub Advisory Database](https://github.com/advisories) |
+| Lista de pacotes + downloads | [top-pypi-packages](https://hugovk.github.io/top-pypi-packages/) |
+| Vulnerabilidades e CVSS | [OSV API](https://api.osv.dev) + [GitHub Advisory Database](https://github.com/advisories) |
 
 ---
 
