@@ -1,0 +1,8 @@
+2026-04-23 06:47:24,215 [INFO] =======================================================
+2026-04-23 06:47:24,215 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-23 06:47:24,216 [INFO] =======================================================
+2026-04-23 06:47:24,216 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\scripts\data\pypi_dependency_graph.graphml
+2026-04-23 06:47:40,877 [INFO] =======================================================
+2026-04-23 06:47:40,878 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-23 06:47:40,878 [INFO] =======================================================
+2026-04-23 06:47:40,879 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\scripts\data\pypi_dependency_graph.graphml

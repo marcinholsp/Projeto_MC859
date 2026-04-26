@@ -1,0 +1,100 @@
+2026-04-23 06:48:29,744 [INFO] =======================================================
+2026-04-23 06:48:29,744 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-23 06:48:29,744 [INFO] =======================================================
+2026-04-23 06:48:29,744 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph.graphml
+2026-04-23 06:48:30,006 [INFO]   3,359 nós | 9,662 arestas
+2026-04-23 06:48:30,006 [INFO] Consultando OSV API para 3,359 pacotes em lotes de 100...
+2026-04-23 06:48:57,585 [INFO] OSV concluído: 321 pacotes com ao menos 1 vulnerabilidade.
+2026-04-23 06:48:57,585 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_vulns.json ...
+2026-04-23 06:48:57,608 [INFO]   ✓ 0.5 MB
+2026-04-23 06:48:57,609 [INFO] Anotando nós do grafo com dados de vulnerabilidade...
+2026-04-23 06:48:57,618 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph_vuln.graphml ...
+2026-04-23 06:48:57,771 [INFO]   ✓ 1.8 MB
+2026-04-23 06:48:57,772 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 06:48:57,772 [INFO] RESUMO DE VULNERABILIDADES
+2026-04-23 06:48:57,772 [INFO]   Total de pacotes analisados : 3,359
+2026-04-23 06:48:57,772 [INFO]   Com ao menos 1 CVE          : 321 (9.6%)
+2026-04-23 06:48:57,772 [INFO]   Críticos (CVSS ≥ 9.0)       : 0
+2026-04-23 06:48:57,772 [INFO]   Altos    (CVSS 7–9)          : 0
+2026-04-23 06:48:57,772 [INFO]   Top 10 por CVSS:
+2026-04-23 06:48:57,773 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 06:49:19,794 [INFO] =======================================================
+2026-04-23 06:49:19,795 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-23 06:49:19,795 [INFO] =======================================================
+2026-04-23 06:49:19,795 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph.graphml
+2026-04-23 06:49:19,965 [INFO]   3,359 nós | 9,662 arestas
+2026-04-23 06:49:19,965 [INFO] Consultando OSV API para 3,359 pacotes em lotes de 100...
+2026-04-23 06:49:48,029 [INFO] OSV concluído: 321 pacotes com ao menos 1 vulnerabilidade.
+2026-04-23 06:49:48,030 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_vulns.json ...
+2026-04-23 06:49:48,081 [INFO]   ✓ 0.5 MB
+2026-04-23 06:49:48,081 [INFO] Anotando nós do grafo com dados de vulnerabilidade...
+2026-04-23 06:49:48,086 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph_vuln.graphml ...
+2026-04-23 06:49:48,232 [INFO]   ✓ 1.8 MB
+2026-04-23 06:49:48,233 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 06:49:48,233 [INFO] RESUMO DE VULNERABILIDADES
+2026-04-23 06:49:48,234 [INFO]   Total de pacotes analisados : 3,359
+2026-04-23 06:49:48,234 [INFO]   Com ao menos 1 CVE          : 321 (9.6%)
+2026-04-23 06:49:48,234 [INFO]   Críticos (CVSS ≥ 9.0)       : 0
+2026-04-23 06:49:48,234 [INFO]   Altos    (CVSS 7–9)          : 0
+2026-04-23 06:49:48,234 [INFO]   Top 10 por CVSS:
+2026-04-23 06:49:48,235 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 06:50:17,718 [INFO] =======================================================
+2026-04-23 06:50:17,718 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-23 06:50:17,719 [INFO] =======================================================
+2026-04-23 06:50:17,719 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph.graphml
+2026-04-23 06:50:17,887 [INFO]   3,359 nós | 9,662 arestas
+2026-04-23 06:50:17,888 [INFO] Consultando OSV API para 3,359 pacotes em lotes de 100...
+2026-04-23 06:50:45,144 [INFO] OSV concluído: 321 pacotes com ao menos 1 vulnerabilidade.
+2026-04-23 06:50:45,145 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_vulns.json ...
+2026-04-23 06:50:45,172 [INFO]   ✓ 0.5 MB
+2026-04-23 06:50:45,172 [INFO] Anotando nós do grafo com dados de vulnerabilidade...
+2026-04-23 06:50:45,178 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph_vuln.graphml ...
+2026-04-23 06:50:45,314 [INFO]   ✓ 1.8 MB
+2026-04-23 06:50:45,317 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 06:50:45,317 [INFO] RESUMO DE VULNERABILIDADES
+2026-04-23 06:50:45,318 [INFO]   Total de pacotes analisados : 3,359
+2026-04-23 06:50:45,318 [INFO]   Com ao menos 1 CVE          : 321 (9.6%)
+2026-04-23 06:50:45,318 [INFO]   Críticos (CVSS ≥ 9.0)       : 0
+2026-04-23 06:50:45,318 [INFO]   Altos    (CVSS 7–9)          : 0
+2026-04-23 06:50:45,318 [INFO]   Top 10 por CVSS:
+2026-04-23 06:50:45,319 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 06:51:01,456 [INFO] =======================================================
+2026-04-23 06:51:01,457 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-23 06:51:01,457 [INFO] =======================================================
+2026-04-23 06:51:01,457 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph.graphml
+2026-04-23 06:51:01,646 [INFO]   3,359 nós | 9,662 arestas
+2026-04-23 06:51:01,647 [INFO] Consultando OSV API para 3,359 pacotes em lotes de 100...
+2026-04-23 06:51:28,943 [INFO] OSV concluído: 321 pacotes com ao menos 1 vulnerabilidade.
+2026-04-23 06:51:28,943 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_vulns.json ...
+2026-04-23 06:51:28,968 [INFO]   ✓ 0.5 MB
+2026-04-23 06:51:28,968 [INFO] Anotando nós do grafo com dados de vulnerabilidade...
+2026-04-23 06:51:28,973 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph_vuln.graphml ...
+2026-04-23 06:51:29,103 [INFO]   ✓ 1.8 MB
+2026-04-23 06:51:29,104 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 06:51:29,104 [INFO] RESUMO DE VULNERABILIDADES
+2026-04-23 06:51:29,105 [INFO]   Total de pacotes analisados : 3,359
+2026-04-23 06:51:29,105 [INFO]   Com ao menos 1 CVE          : 321 (9.6%)
+2026-04-23 06:51:29,105 [INFO]   Críticos (CVSS ≥ 9.0)       : 0
+2026-04-23 06:51:29,105 [INFO]   Altos    (CVSS 7–9)          : 0
+2026-04-23 06:51:29,105 [INFO]   Top 10 por CVSS:
+2026-04-23 06:51:29,107 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 08:26:31,929 [INFO] =======================================================
+2026-04-23 08:26:31,929 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-23 08:26:31,930 [INFO] =======================================================
+2026-04-23 08:26:31,930 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph.graphml
+2026-04-23 08:26:32,181 [INFO]   3,359 nós | 9,662 arestas
+2026-04-23 08:26:32,181 [INFO] Consultando OSV API para 3,359 pacotes em lotes de 100...
+2026-04-23 08:27:09,830 [INFO] OSV concluído: 321 pacotes com ao menos 1 vulnerabilidade.
+2026-04-23 08:27:09,830 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_vulns.json ...
+2026-04-23 08:27:09,855 [INFO]   ✓ 0.5 MB
+2026-04-23 08:27:09,855 [INFO] Anotando nós do grafo com dados de vulnerabilidade...
+2026-04-23 08:27:09,861 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\data\pypi_dependency_graph_vuln.graphml ...
+2026-04-23 08:27:10,066 [INFO]   ✓ 1.9 MB
+2026-04-23 08:27:10,067 [INFO] ───────────────────────────────────────────────────────
+2026-04-23 08:27:10,067 [INFO] RESUMO DE VULNERABILIDADES
+2026-04-23 08:27:10,068 [INFO]   Total de pacotes analisados : 3,359
+2026-04-23 08:27:10,068 [INFO]   Com ao menos 1 CVE          : 321 (9.6%)
+2026-04-23 08:27:10,068 [INFO]   Críticos (CVSS ≥ 9.0)       : 0
+2026-04-23 08:27:10,068 [INFO]   Altos    (CVSS 7–9)          : 0
+2026-04-23 08:27:10,068 [INFO]   Top 10 por CVSS:
+2026-04-23 08:27:10,068 [INFO] ───────────────────────────────────────────────────────
