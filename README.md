@@ -48,6 +48,7 @@ O grafo é **direcionado**: uma aresta **A → B** indica que o pacote A depende
 /
 ├── README.md
 ├── requirements.txt
+├── Entrega_Parcial_MC859.pdf       ← entrega parcial MC859 (4 páginas)
 ├── scripts/
 │   ├── build_pypi_graph.py         ← coleta + construção do grafo (PyPI API)
 │   ├── analyze_pypi_graph.py       ← métricas + visualizações do grafo
@@ -63,7 +64,9 @@ O grafo é **direcionado**: uma aresta **A → B** indica que o pacote A depende
 │   ├── pypi_vulns.json                      ← mapa {pacote: {vuln_count, max_cvss, …}}
 │   ├── downloads_map.json                   ← mapa {pacote: downloads_mensais}
 │   ├── vuln_stats.json                      ← métricas e top riscos em JSON
-│   └── stats.json                           ← métricas básicas do grafo
+│   ├── stats.json                           ← métricas básicas do grafo
+│   ├── build_log.txt                        ← log da coleta do grafo (gerado)
+│   └── vuln_fetch_log.txt                   ← log da coleta OSV (gerado)
 └── assets/                         ← todas as figuras geradas pelos scripts
     ├── degree_distribution.png
     ├── scc_distribution.png
@@ -154,15 +157,19 @@ Esse score diferencia centralidade estrutural de impacto prático — um pacote 
 
 ![IC vs BFS](assets/vuln_ic_vs_bfs.png)
 
+![Downloads vs CVSS](assets/vuln_downloads_vs_cvss.png)
+
+![Cascade example](assets/vuln_cascade_example.png)
+
 ---
 
 ## Como reproduzir
 
 ```bash
 # 1) Instalar dependências
-pip install networkx requests tqdm matplotlib numpy cvss
+pip install -r requirements.txt
 
-# 2) Construir o grafo (requests à API pública do PyPI — ~10 min)
+# 2) Construir o grafo (requests à API pública do PyPI — ~30 min para 54k nós)
 python scripts/build_pypi_graph.py
 
 # 3) Analisar e gerar figuras do grafo
@@ -179,6 +186,9 @@ python scripts/annotate_downloads.py
 
 # 7) Modelo IC + figuras de risco ponderado por downloads
 python scripts/analyze_vulnerabilities.py
+
+# 8) Gerar PDF de entrega parcial (4 páginas)
+python scripts/gerar_entrega_parcial.py
 ```
 
 ---
