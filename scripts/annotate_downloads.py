@@ -84,12 +84,12 @@ def save_graph(G: nx.DiGraph, graphml_path: Path, gexf_path: Path | None = None)
 
     log.info(f"Salvando {graphml_path} ...")
     nx.write_graphml(G_ml, graphml_path)
-    log.info(f"  ✓ {graphml_path.stat().st_size / 1e6:.1f} MB")
+    log.info(f"  [OK] {graphml_path.stat().st_size / 1e6:.1f} MB")
 
     if gexf_path:
         log.info(f"Salvando {gexf_path} ...")
         nx.write_gexf(G, gexf_path)
-        log.info(f"  ✓ {gexf_path.stat().st_size / 1e6:.1f} MB")
+        log.info(f"  [OK] {gexf_path.stat().st_size / 1e6:.1f} MB")
 
 
 def main():

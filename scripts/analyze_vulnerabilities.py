@@ -51,8 +51,7 @@ import networkx as nx
 
 PROJECT_ROOT  = Path(__file__).resolve().parent.parent
 DATA_DIR      = PROJECT_ROOT / "data"
-FIGURES_DIR   = PROJECT_ROOT / "figures"
-ASSETS_DIR    = PROJECT_ROOT / "assets"
+FIGURES_DIR   = PROJECT_ROOT / "assets"
 
 INPUT_GRAPHML = DATA_DIR / "pypi_dependency_graph_vuln.graphml"
 OUTPUT_JSON   = DATA_DIR / "vuln_stats.json"
@@ -64,9 +63,9 @@ logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  ESTILO GLOBAL
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 plt.rcParams.update({
     "figure.facecolor": "#0d1117",
     "axes.facecolor":   "#161b22",
@@ -91,9 +90,9 @@ ACCENT3 = "#f78166"
 ACCENT4 = "#d2a8ff"
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  CARGA
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def load_graph(path: Path) -> nx.DiGraph:
     log.info(f"Carregando grafo: {path} ({path.stat().st_size / 1e6:.1f} MB)")
@@ -110,9 +109,9 @@ def get_float(G, node, attr, default=0.0):
         return default
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  MODELO IC — PRÉ-COMPUTAÇÃO DE PROBABILIDADES
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def compute_ic_probabilities(G: nx.DiGraph) -> dict[tuple, float]:
     """
@@ -145,9 +144,9 @@ def compute_ic_probabilities(G: nx.DiGraph) -> dict[tuple, float]:
     return probs
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  SIMULAÇÃO IC — MONTE CARLO
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def ic_simulate(source: str, G_rev: nx.DiGraph,
                 probs: dict[tuple, float],
@@ -205,9 +204,9 @@ def ic_simulate(source: str, G_rev: nx.DiGraph,
     }
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  MÉTRICAS PRINCIPAIS
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def compute_all_metrics(G: nx.DiGraph) -> dict:
     downloads = {n: int(get_float(G, n, "downloads")) for n in G.nodes()}
@@ -271,9 +270,9 @@ def compute_all_metrics(G: nx.DiGraph) -> dict:
     }
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  GRÁFICO 1 — TOP 20 RISCO IC
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def plot_risk_scores(metrics: dict):
     rows = metrics["_all_rows"][:20]
@@ -321,12 +320,12 @@ def plot_risk_scores(metrics: dict):
     out = FIGURES_DIR / "vuln_risk_scores.png"
     plt.savefig(out, dpi=FIG_DPI, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close()
-    log.info(f"  ✓ {out}")
+    log.info(f"  [OK] {out}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  GRÁFICO 2 — IC reach vs BFS reach (impacto dos downloads)
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def plot_ic_vs_bfs(metrics: dict):
     """
@@ -378,12 +377,12 @@ def plot_ic_vs_bfs(metrics: dict):
     out = FIGURES_DIR / "vuln_ic_vs_bfs.png"
     plt.savefig(out, dpi=FIG_DPI, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close()
-    log.info(f"  ✓ {out}")
+    log.info(f"  [OK] {out}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  GRÁFICO 3 — Downloads afetados × CVSS (scatter)
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def plot_downloads_vs_cvss(metrics: dict):
     rows = metrics["_all_rows"]
@@ -426,12 +425,12 @@ def plot_downloads_vs_cvss(metrics: dict):
     out = FIGURES_DIR / "vuln_downloads_vs_cvss.png"
     plt.savefig(out, dpi=FIG_DPI, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close()
-    log.info(f"  ✓ {out}")
+    log.info(f"  [OK] {out}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  GRÁFICO 4 — Cascata do pacote mais crítico
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def plot_cascade_example(G: nx.DiGraph, metrics: dict,
                          probs: dict[tuple, float]):
@@ -526,16 +525,15 @@ def plot_cascade_example(G: nx.DiGraph, metrics: dict,
     out = FIGURES_DIR / "vuln_cascade_example.png"
     plt.savefig(out, dpi=FIG_DPI, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close()
-    log.info(f"  ✓ {out}")
+    log.info(f"  [OK] {out}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  MAIN
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def main():
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-    ASSETS_DIR.mkdir(parents=True, exist_ok=True)
 
     log.info("=" * 60)
     log.info("ANÁLISE IC — PROPAGAÇÃO PONDERADA POR DOWNLOADS")
@@ -551,19 +549,11 @@ def main():
     plot_downloads_vs_cvss(metrics)
     plot_cascade_example(G, metrics, probs)
 
-    # Copia figuras para assets/ (usada no README e na entrega)
-    import shutil
-    for fname in ["vuln_risk_scores.png", "vuln_ic_vs_bfs.png",
-                  "vuln_downloads_vs_cvss.png", "vuln_cascade_example.png"]:
-        src = FIGURES_DIR / fname
-        if src.exists():
-            shutil.copy(src, ASSETS_DIR / fname)
-
     # Salva JSON
     clean = {k: v for k, v in metrics.items() if not k.startswith("_")}
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(clean, f, ensure_ascii=False, indent=2)
-    log.info(f"  ✓ {OUTPUT_JSON}")
+    log.info(f"  [OK] {OUTPUT_JSON}")
 
     print("\n[OK] Análise IC concluída!")
     print(f"   Pacotes vulneráveis: {metrics['vulnerable_nodes']}/{metrics['total_nodes']}")

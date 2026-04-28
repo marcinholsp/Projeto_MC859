@@ -23,12 +23,12 @@ import matplotlib.ticker as ticker
 import numpy as np
 import networkx as nx
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  CONFIGURAÇÕES
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR     = PROJECT_ROOT / "data"
-FIGURES_DIR  = PROJECT_ROOT / "figures"
+FIGURES_DIR  = PROJECT_ROOT / "assets"
 
 INPUT_FILE   = DATA_DIR / "pypi_dependency_graph.graphml"   # ou .gexf
 OUTPUT_JSON  = DATA_DIR / "stats.json"
@@ -39,9 +39,9 @@ logging.basicConfig(level=logging.INFO,
 log = logging.getLogger(__name__)
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  ESTILO GLOBAL DOS GRÁFICOS
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 plt.rcParams.update({
     "figure.facecolor":  "#0d1117",   # fundo escuro (estilo GitHub dark)
     "axes.facecolor":    "#161b22",
@@ -66,9 +66,9 @@ ACCENT2  = "#3fb950"   # verde
 ACCENT3  = "#f78166"   # vermelho/laranja
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  CARREGAMENTO
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def load_graph(path: str) -> nx.DiGraph:
     p = Path(path)
@@ -83,9 +83,9 @@ def load_graph(path: str) -> nx.DiGraph:
     return G
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  MÉTRICAS
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def compute_metrics(G: nx.DiGraph) -> dict:
     n = G.number_of_nodes()
@@ -134,7 +134,7 @@ def compute_metrics(G: nx.DiGraph) -> dict:
     }
 
     # Log legível
-    log.info("─" * 55)
+    log.info("-" * 55)
     log.info("MÉTRICAS DO GRAFO")
     log.info(f"  Vértices              : {n:,}")
     log.info(f"  Arestas               : {m:,}")
@@ -151,14 +151,14 @@ def compute_metrics(G: nx.DiGraph) -> dict:
     log.info("  Top 10 mais dependidos (in-degree):")
     for pkg, deg in top_in[:10]:
         log.info(f"    {pkg:<38} {deg:>5}")
-    log.info("─" * 55)
+    log.info("-" * 55)
 
     return metrics
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  GRÁFICO 1 — DISTRIBUIÇÃO DE GRAUS
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def plot_degree_distribution(metrics: dict):
     in_deg  = metrics["_in_degrees"]
@@ -205,12 +205,12 @@ def plot_degree_distribution(metrics: dict):
     plt.savefig(out, dpi=FIG_DPI, bbox_inches="tight",
                 facecolor=fig.get_facecolor())
     plt.close()
-    log.info(f"  ✓ {out}")
+    log.info(f"  [OK] {out}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  GRÁFICO 2 — DISTRIBUIÇÃO DE TAMANHOS DAS CFCs
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def plot_scc_distribution(metrics: dict):
     sizes = metrics["_scc_sizes"]
@@ -228,7 +228,7 @@ def plot_scc_distribution(metrics: dict):
     fig.suptitle("Distribuição dos Tamanhos das CFCs\n"
                  "(Componentes Fortemente Conexas — grafo direcionado)", fontsize=13)
 
-    # ── Painel esquerdo: todas as CFCs por tamanho ───────────────────────────
+    # -- Painel esquerdo: todas as CFCs por tamanho ---------------------------
     ax = axes[0]
     all_ks   = sorted(counts.keys())
     all_vals = [counts[k] for k in all_ks]
@@ -251,7 +251,7 @@ def plot_scc_distribution(metrics: dict):
         Patch(facecolor=ACCENT,  label=f"Não-singletons: {sum(non_singleton.values())}"),
     ], fontsize=9)
 
-    # ── Painel direito: zoom nas CFCs não-singleton ──────────────────────────
+    # -- Painel direito: zoom nas CFCs não-singleton --------------------------
     ax2 = axes[1]
     if non_singleton:
         ks   = sorted(non_singleton.keys())
@@ -289,12 +289,12 @@ def plot_scc_distribution(metrics: dict):
     plt.savefig(out, dpi=FIG_DPI, bbox_inches="tight",
                 facecolor=fig.get_facecolor())
     plt.close()
-    log.info(f"  ✓ {out}")
+    log.info(f"  [OK] {out}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  GRÁFICO 3 — TOP 20 PACOTES MAIS DEPENDIDOS
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def plot_top_packages(metrics: dict):
     top = metrics["top_20_in_degree"]
@@ -325,12 +325,12 @@ def plot_top_packages(metrics: dict):
     plt.savefig(out, dpi=FIG_DPI, bbox_inches="tight",
                 facecolor=fig.get_facecolor())
     plt.close()
-    log.info(f"  ✓ {out}")
+    log.info(f"  [OK] {out}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  SALVAR JSON COM MÉTRICAS
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def save_stats(metrics: dict):
     # Remove listas grandes antes de serializar
@@ -338,12 +338,12 @@ def save_stats(metrics: dict):
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(clean, f, ensure_ascii=False, indent=2)
-    log.info(f"  ✓ {OUTPUT_JSON}")
+    log.info(f"  [OK] {OUTPUT_JSON}")
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  MAIN
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def main():
     log.info("=" * 55)
@@ -359,7 +359,7 @@ def main():
     plot_top_packages(metrics)
     save_stats(metrics)
 
-    print("\n✅ Análise concluída! Arquivos gerados:")
+    print("\n[OK] Análise concluída! Arquivos gerados:")
     print(f"   📊 {FIGURES_DIR / 'degree_distribution.png'}")
     print(f"   📊 {FIGURES_DIR / 'scc_distribution.png'}")
     print(f"   📊 {FIGURES_DIR / 'top_packages.png'}")

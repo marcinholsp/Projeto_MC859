@@ -28,9 +28,9 @@ import networkx as nx
 import requests
 from tqdm import tqdm
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  CONFIGURAÇÕES
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 PROJECT_ROOT   = Path(__file__).resolve().parent.parent
 DATA_DIR       = PROJECT_ROOT / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -56,9 +56,9 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  CONSULTA À OSV API (batch)
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def query_osv_batch(packages: list[str], session: requests.Session) -> dict[str, list]:
     """
@@ -134,9 +134,9 @@ def extract_vuln_ids(vuln: dict) -> list[str]:
     return [i for i in ids if i]
 
 
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 #  PIPELINE PRINCIPAL
-# ─────────────────────────────────────────────
+# ---------------------------------------------
 
 def fetch_all_vulnerabilities(G: nx.DiGraph) -> dict:
     """
@@ -221,7 +221,7 @@ def print_summary(vuln_map: dict):
     criticos  = [(pkg, v) for pkg, v in vuln_map.items() if v["max_cvss"] >= 9.0]
     altos     = [(pkg, v) for pkg, v in vuln_map.items() if 7.0 <= v["max_cvss"] < 9.0]
 
-    log.info("─" * 55)
+    log.info("-" * 55)
     log.info("RESUMO DE VULNERABILIDADES")
     log.info(f"  Total de pacotes analisados : {total:,}")
     log.info(f"  Com ao menos 1 CVE          : {com_vuln:,} ({100*com_vuln/total:.1f}%)")
@@ -232,7 +232,7 @@ def print_summary(vuln_map: dict):
     for pkg, v in top:
         if v["max_cvss"] > 0:
             log.info(f"    {pkg:<35} CVSS={v['max_cvss']}  vulns={v['vuln_count']}")
-    log.info("─" * 55)
+    log.info("-" * 55)
 
 
 def main():
@@ -254,13 +254,13 @@ def main():
     log.info(f"Salvando {OUTPUT_JSON} ...")
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(vuln_map, f, ensure_ascii=False, indent=2)
-    log.info(f"  ✓ {Path(OUTPUT_JSON).stat().st_size / 1e6:.1f} MB")
+    log.info(f"  [OK] {Path(OUTPUT_JSON).stat().st_size / 1e6:.1f} MB")
 
     # 4. Anota grafo e salva GraphML
     G = annotate_graph(G, vuln_map)
     log.info(f"Salvando {OUTPUT_GRAPHML} ...")
     nx.write_graphml(G, OUTPUT_GRAPHML)
-    log.info(f"  ✓ {Path(OUTPUT_GRAPHML).stat().st_size / 1e6:.1f} MB")
+    log.info(f"  [OK] {Path(OUTPUT_GRAPHML).stat().st_size / 1e6:.1f} MB")
 
     # 5. Resumo
     print_summary(vuln_map)

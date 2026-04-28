@@ -13,6 +13,7 @@ from reportlab.lib.units import cm
 from reportlab.platypus import (
     HRFlowable,
     Image,
+    PageBreak,
     Paragraph,
     SimpleDocTemplate,
     Spacer,
@@ -29,7 +30,10 @@ REPO   = "https://github.com/marcinholsp/Projeto_MC859"
 with open(DATA / "stats.json", encoding="utf-8") as f:
     stats = json.load(f)
 
-# ── Estilos ──────────────────────────────────────────────────────────────────
+with open(DATA / "vuln_stats.json", encoding="utf-8") as f:
+    vstats = json.load(f)
+
+# -- Estilos ------------------------------------------------------------------
 BASE = getSampleStyleSheet()
 
 titulo = ParagraphStyle("titulo", parent=BASE["Heading1"],
@@ -73,10 +77,10 @@ def tabela(data, col_widths):
     ]))
     return t
 
-# ── Conteúdo ─────────────────────────────────────────────────────────────────
+# -- Conteúdo -----------------------------------------------------------------
 story = []
 
-# ── Cabeçalho ────────────────────────────────────────────────────────────────
+# -- Cabeçalho ----------------------------------------------------------------
 story.append(Paragraph(
     "Análise de Resiliência e Propagação de Vulnerabilidades<br/>"
     "em Grafos de Dependências do Ecossistema Python", titulo))
@@ -85,7 +89,7 @@ story.append(Paragraph("MC859 — UNICAMP, Abril de 2026", subtitulo))
 story.append(hr())
 story.append(Spacer(1, 0.1*cm))
 
-# ── 1. Introdução ─────────────────────────────────────────────────────────────
+# -- 1. Introdução -------------------------------------------------------------
 story.append(Paragraph("1. Introdução", secao))
 story.append(Paragraph(
     "O ecossistema de pacotes Python (PyPI) é um dos maiores repositórios de "
@@ -104,24 +108,20 @@ story.append(Paragraph(
     "(<i>Open Source Vulnerabilities</i>) e do GitHub Advisory Database.", corpo))
 
 story.append(Paragraph("<b>Coleta de dados.</b> "
-    "A lista dos 3.000 pacotes mais baixados nos últimos 30 dias foi obtida do "
-    "serviço público <i>top-pypi-packages</i> (hugovk.github.io), que agrega "
-    "estatísticas oficiais do PyPI. Para cada pacote-semente, a API JSON do "
-    "PyPI (<tt>pypi.org/pypi/{pkg}/json</tt>) foi consultada para extrair as "
-    "dependências diretas de runtime declaradas no campo <tt>requires_dist</tt>, "
-    "filtrando dependências opcionais (marcadas com <tt>extra ==</tt>). "
-    "O processo expandiu o conjunto recursivamente via BFS até o limite de "
-    "8.000 vértices, resultando em <b>3.359 pacotes</b> e <b>9.659 arestas</b>. "
-    "Todos os dados provêm de APIs públicas e não requerem anonimização. "
-    "Além das dependências, cada nó foi anotado com o volume de downloads "
-    "mensais proveniente da mesma fonte, utilizado para ponderar a análise "
-    "de propagação de vulnerabilidades.", corpo))
+    "Foram combinadas duas fontes: (i) os <b>8.000 pacotes mais baixados</b> "
+    "nos últimos 30 dias (<i>top-pypi-packages</i>, hugovk.github.io) e (ii) "
+    "<b>40.000 pacotes adicionais</b> do <i>PyPI Simple Index</i>. "
+    "Para cada semente, a API JSON do PyPI extraiu dependências de runtime de "
+    "<tt>requires_dist</tt>, ignorando extras opcionais. "
+    "Com 20 threads paralelas e BFS transitivo, o grafo resultante tem "
+    f"<b>{stats['n_vertices']:,} pacotes</b> e <b>{stats['n_arestas']:,} arestas</b>. ".replace(",",".") +
+    "Cada nó foi anotado com downloads mensais para ponderar a propagação de vulnerabilidades.", corpo))
 
 story.append(Paragraph(
     f'Repositório com instâncias e scripts: '
     f'<a href="{REPO}" color="#0563c1"><u>{REPO}</u></a>', corpo))
 
-# ── 2. Tamanho do Grafo ───────────────────────────────────────────────────────
+# -- 2. Tamanho do Grafo -------------------------------------------------------
 story.append(Paragraph("2. Tamanho do Grafo", secao))
 
 metricas = [
@@ -131,7 +131,7 @@ metricas = [
     ["Grau médio (in + out)", f"{stats['grau_medio']:.2f}"],
     ["In-degree médio (dependentes diretos)", f"{stats['in_degree_medio']:.2f}"],
     ["Out-degree médio (dependências diretas)", f"{stats['out_degree_medio']:.2f}"],
-    ["In-degree máximo", f"{stats['in_degree_max']} (typing-extensions)"],
+    ["In-degree máximo", f"{stats['in_degree_max']:,} (numpy)".replace(",",".")],
     ["Out-degree máximo", f"{stats['out_degree_max']}"],
     ["CFCs totais", f"{stats['n_sccs']:,}".replace(",",".")],
     ["Maior CFC", f"{stats['maior_scc']} vértices"],
@@ -143,14 +143,16 @@ story.append(tabela(metricas, [10*cm, 7*cm]))
 story.append(Spacer(1, 0.25*cm))
 
 story.append(Paragraph(
-    "A densidade do grafo é baixa (9.659 arestas para 3.359 nós), o que é "
-    "esperado em redes de dependências reais: cada pacote declara, em média, "
-    "menos de 3 dependências diretas. O in-degree máximo de 495 "
-    "(<tt>typing-extensions</tt>) evidencia a presença de <i>hubs</i> — "
-    "pacotes que servem de base para centenas de outros — característica "
-    "típica de redes livres de escala (<i>scale-free</i>).", corpo))
+    f"A densidade do grafo é baixa ({stats['n_arestas']:,} arestas para "
+    f"{stats['n_vertices']:,} nós), o que é esperado em redes de dependências "
+    f"reais: cada pacote declara, em média, cerca de "
+    f"{stats['out_degree_medio']:.1f} dependências diretas. O in-degree "
+    f"máximo de {stats['in_degree_max']:,} (<tt>numpy</tt>) evidencia a "
+    f"presença de <i>hubs</i> — pacotes que servem de base para milhares "
+    f"de outros — característica típica de redes livres de escala "
+    f"(<i>scale-free</i>).".replace(",","."), corpo))
 
-# ── 3. Distribuição de Graus ──────────────────────────────────────────────────
+# -- 3. Distribuição de Graus --------------------------------------------------
 story.append(Paragraph("3. Distribuição de Graus", secao))
 
 img_deg = Image(str(ASSETS/"degree_distribution.png"), width=15.5*cm, height=6.5*cm)
@@ -163,24 +165,26 @@ story.append(Paragraph(
 story.append(Paragraph(
     "A distribuição de graus segue uma <b>lei de potência</b> "
     "(<i>power-law</i>) em escala log-log, com expoentes estimados por "
-    "regressão linear de −1,13 para o in-degree e −1,44 para o grau total. "
+    "regressão linear de −0,91 para o in-degree e −1,20 para o grau total. "
     "Esse padrão — característico de redes livres de escala — implica que "
     "a maioria dos pacotes tem poucos dependentes, enquanto um número muito "
-    "reduzido de hubs concentra centenas deles. Do ponto de vista de "
+    "reduzido de hubs concentra milhares deles. Do ponto de vista de "
     "segurança, esses hubs são candidatos naturais a pontos críticos: uma "
-    "vulnerabilidade em <tt>typing-extensions</tt> (in-degree 495) ou "
-    "<tt>requests</tt> (253) pode afetar, direta ou indiretamente, grande "
-    "parte do ecossistema.", corpo))
+    "vulnerabilidade em <tt>numpy</tt> (in-degree 6.479), <tt>requests</tt> "
+    "(6.463) ou <tt>pydantic</tt> (4.461) pode afetar, direta ou "
+    "indiretamente, grande parte do ecossistema.", corpo))
 
 story.append(Paragraph(
-    "A Figura 2 apresenta os 20 pacotes com maior in-degree. Observa-se que "
-    "<tt>typing-extensions</tt> destaca-se com folga — seu in-degree é quase "
-    "o dobro do segundo colocado (<tt>requests</tt>). Também chamam atenção "
-    "os pacotes <tt>pyobjc-core</tt> e <tt>pyobjc-framework-cocoa</tt>, "
-    "específicos para macOS, que aparecem no top-10 estrutural mas têm "
-    "downloads muito menores que <tt>numpy</tt> ou <tt>requests</tt> — "
-    "ilustrando por que centralidade estrutural isolada não é suficiente "
-    "para avaliar criticidade.", corpo))
+    "A Figura 2 apresenta os 20 pacotes com maior in-degree. <tt>numpy</tt> e "
+    "<tt>requests</tt> destacam-se em uma faixa muito acima dos demais, "
+    "seguidos por <tt>pydantic</tt>, <tt>pandas</tt> e <tt>pyyaml</tt>. "
+    "Curiosamente, <tt>typing-extensions</tt>, líder em estudos restritos "
+    "ao top-3.000 pacotes, aparece apenas em sexta posição quando o escopo "
+    "é ampliado: muitos dos pacotes mais populares já dependem dele, mas "
+    "ele tem alcance estrutural menor que bibliotecas científicas como "
+    "<tt>numpy</tt>, que penetra em ferramentas de ML, dados e análise — "
+    "ilustrando como o tamanho da amostra afeta o ranking de centralidade.",
+    corpo))
 
 img_top = Image(str(ASSETS/"top_packages.png"), width=15.5*cm, height=6.8*cm)
 story.append(img_top)
@@ -188,61 +192,140 @@ story.append(Paragraph(
     "<b>Figura 2.</b> Top 20 pacotes por in-degree (número de pacotes que "
     "dependem diretamente de cada um).", caption))
 
-# ── 4. Componentes Fortemente Conexas ─────────────────────────────────────────
+# -- 4. Componentes Fortemente Conexas -----------------------------------------
 story.append(Paragraph("4. Componentes Fortemente Conexas (CFCs)", secao))
 
+pct_singleton = 100 * stats["n_singletons_scc"] / stats["n_sccs"]
+n_cfc_multi   = stats["n_sccs"] - stats["n_singletons_scc"]
 story.append(Paragraph(
-    f"O algoritmo de Kosaraju identificou <b>{stats['n_sccs']:,} CFCs</b>. "
+    f"O algoritmo de Tarjan identificou <b>{stats['n_sccs']:,} CFCs</b>. "
     f"Desse total, <b>{stats['n_singletons_scc']:,} são singletons</b> "
-    f"(99,94%), confirmando que o grafo de dependências PyPI é "
+    f"({pct_singleton:.2f}%), confirmando que o grafo de dependências PyPI é "
     f"essencialmente <i>acíclico</i>. Gerenciadores de pacotes como "
     f"<tt>pip</tt> exigem um grafo acíclico para resolver dependências "
     f"deterministicamente, de modo que dependências circulares são "
     f"proibidas em teoria — as raras exceções encontradas "
-    f"(2 CFCs com mais de um vértice, de tamanhos 2 e "
+    f"({n_cfc_multi} CFCs com mais de um vértice, de tamanhos entre 2 e "
     f"<b>{stats['maior_scc']}</b>) podem indicar versões de compatibilidade "
-    f"cruzada ou opcionais não declaradas corretamente.".replace(",","."), corpo))
+    f"cruzada ou dependências opcionais não declaradas corretamente.".replace(",","."), corpo))
 
 story.append(Paragraph(
     "A Figura 3 ilustra a distribuição de tamanhos das CFCs. O painel "
     "esquerdo evidencia o domínio absoluto dos singletons; o painel direito "
-    "amplia as únicas duas CFCs com mais de um vértice, confirmando que "
-    "dependências circulares são eventos raros e de pequena escala neste "
-    "ecossistema.", corpo))
+    "amplia as CFCs com mais de um vértice, confirmando que dependências "
+    "circulares são eventos raros e de pequena escala neste ecossistema.",
+    corpo))
 
 img_scc = Image(str(ASSETS/"scc_distribution.png"), width=15.5*cm, height=6.0*cm)
 story.append(img_scc)
 story.append(Paragraph(
-    "<b>Figura 3.</b> Distribuição dos tamanhos das CFCs. Esquerda: visão "
-    "geral (3.349 singletons dominam). Direita: zoom nas 2 CFCs com mais "
-    "de 1 vértice (tamanhos 2 e 8).", caption))
+    f"<b>Figura 3.</b> Distribuição dos tamanhos das CFCs. Esquerda: visão "
+    f"geral ({stats['n_singletons_scc']:,} singletons dominam). Direita: zoom "
+    f"nas {n_cfc_multi} CFCs com mais de 1 vértice (tamanhos entre 2 e "
+    f"{stats['maior_scc']}).".replace(",","."), caption))
 
-# ── 5. Componentes Fracamente Conexas ─────────────────────────────────────────
+# -- 5. Componentes Fracamente Conexas -----------------------------------------
 story.append(Paragraph("5. Componentes Fracamente Conexas (CFrCs)", secao))
 
 pct_gigante = 100 * stats["maior_wcc"] / stats["n_vertices"]
 story.append(Paragraph(
     f"Ignorando a direção das arestas, o grafo possui "
-    f"<b>{stats['n_wccs']} componentes fracamente conexas</b>. "
+    f"<b>{stats['n_wccs']:,} componentes fracamente conexas</b>. "
     f"A maior delas contém <b>{stats['maior_wcc']:,} vértices</b> "
     f"({pct_gigante:.1f}% do total) — o chamado <i>componente gigante</i>, "
     f"presente em praticamente todas as redes reais de larga escala. "
-    f"As demais {stats['n_wccs']-1} componentes são, em sua maioria, "
+    f"As demais {stats['n_wccs']-1:,} componentes são, em sua maioria, "
     f"pacotes isolados ou pequenos subgrafos sem ligação com o núcleo "
-    f"principal do ecossistema, provavelmente pacotes de nicho ou com "
-    f"dependências não cobertas pelo escopo da coleta.".replace(",","."), corpo))
+    f"principal do ecossistema — pacotes de nicho, abandonados, ou cujos "
+    f"metadados <tt>requires_dist</tt> não declaram dependências "
+    f"runtime.".replace(",","."), corpo))
 
 story.append(Paragraph(
-    "A existência de um componente gigante cobrindo quase 88% do grafo "
-    "tem implicações diretas para a análise de propagação de "
-    "vulnerabilidades: uma falha em qualquer pacote dentro desse componente "
-    "pode, em princípio, atingir outros 2.947 pacotes por caminhos de "
-    "dependência. Essa observação motiva o uso de modelos de propagação "
-    "probabilística — como o Independent Cascade — em etapas futuras do "
-    "projeto, para quantificar o alcance real considerando a intensidade "
-    "de uso de cada dependência.", corpo))
+    f"A existência de um componente gigante cobrindo {pct_gigante:.1f}% do "
+    f"grafo tem implicações diretas para a análise de propagação de "
+    f"vulnerabilidades: uma falha em qualquer pacote dentro desse componente "
+    f"pode, em princípio, atingir até "
+    f"{stats['maior_wcc']-1:,} outros pacotes por caminhos de "
+    f"dependência. Essa conectividade motivou o uso do modelo Independent "
+    f"Cascade para quantificar o alcance real de cada "
+    f"vulnerabilidade.".replace(",","."), corpo))
 
-# ── Rodapé ───────────────────────────────────────────────────────────────────
+# -- 6. Análise de Vulnerabilidades -------------------------------------------
+story.append(PageBreak())
+story.append(Paragraph("6. Análise de Vulnerabilidades", secao))
+
+n_vuln  = vstats["vulnerable_nodes"]
+pct_vuln = vstats["pct_vulnerable"]
+story.append(Paragraph(
+    f"A base OSV (<i>Open Source Vulnerabilities</i>) e o GitHub Advisory Database "
+    f"foram consultados para cada nó do grafo. Foram identificados "
+    f"<b>{n_vuln} pacotes com ao menos um CVE</b> ({pct_vuln:.1f}% dos "
+    f"{stats['n_vertices']:,} pacotes totais). Para cada pacote vulnerável, o "
+    f"CVSS máximo foi extraído via biblioteca <tt>cvss</tt> e armazenado como "
+    f"atributo do nó no grafo anotado "
+    f"(<tt>pypi_dependency_graph_vuln.graphml</tt>).".replace(",","."), corpo))
+
+story.append(Paragraph("<b>Modelo Independent Cascade (IC) ponderado por downloads.</b> "
+    "Em vez de BFS/DFS determinístico, o projeto usa o modelo IC para responder: "
+    "<i>se o pacote B for comprometido, com que probabilidade o pacote A que depende "
+    "de B será afetado?</i> A probabilidade de propagação da aresta B → A (no grafo "
+    "reverso) é proporcional à fração de downloads de B em relação a todas as "
+    "dependências de A:", corpo))
+
+formula_style = ParagraphStyle("formula", parent=BASE["Normal"],
+    fontSize=9, leading=13, alignment=TA_CENTER,
+    fontName="Courier", spaceAfter=5,
+    textColor=colors.HexColor("#1a3a5c"))
+story.append(Paragraph(
+    "p(B→A) = log1p(downloads_B) / Σ log1p(downloads_dep),  dep ∈ deps(A)",
+    formula_style))
+
+story.append(Paragraph(
+    "O score de criticidade combina gravidade real e alcance prático:", corpo))
+story.append(Paragraph(
+    "risk(v) = CVSS(v) × log1p(downloads_IC_afetados) × log1p(downloads_próprios)",
+    formula_style))
+
+story.append(Paragraph(
+    "500 simulações Monte Carlo foram executadas por pacote vulnerável. "
+    "Esse score diferencia centralidade estrutural de impacto prático: um pacote "
+    "com muitos dependentes mas pouco uso real obtém score baixo.", corpo))
+
+# Tabela top 5
+top5 = vstats["top_risks"][:5]
+def fmt_dl(n):
+    if n >= 1e9:
+        return f"{n/1e9:.2f} B"
+    if n >= 1e6:
+        return f"{n/1e6:.0f} M"
+    return f"{n:,}".replace(",",".")
+
+risk_data = [["Pacote", "CVSS", "CVEs", "Downloads próprios", "Downloads IC afetados", "Risk score"]]
+for r in top5:
+    risk_data.append([
+        r["package"],
+        f"{r['cvss']:.1f}",
+        str(r["vuln_count"]),
+        fmt_dl(r["own_downloads"]),
+        fmt_dl(r["ic_active_dl"]),
+        f"{r['risk_score']:.0f}",
+    ])
+story.append(tabela(risk_data, [3.5*cm, 1.3*cm, 1.0*cm, 3.2*cm, 3.5*cm, 2.5*cm]))
+story.append(Spacer(1, 0.2*cm))
+
+img_risk = Image(str(ASSETS/"vuln_risk_scores.png"), width=15.5*cm, height=6.2*cm)
+story.append(img_risk)
+story.append(Paragraph(
+    "<b>Figura 4.</b> Top 20 pacotes por risco IC ponderado por downloads. "
+    "A barra combina CVSS, alcance IC e volume de uso.", caption))
+
+story.append(Paragraph(
+    "A Figura 5 (repositório) compara o alcance BFS estrutural com o alcance IC real: "
+    "pacotes com muitos dependentes transitivos mas baixo IC são dependências opcionais "
+    "ou pouco utilizadas na prática, evidenciando a importância de ponderar pelo uso real.",
+    corpo))
+
+# -- Rodapé -------------------------------------------------------------------
 story.append(Spacer(1, 0.2*cm))
 story.append(hr())
 story.append(Paragraph(
@@ -252,7 +335,7 @@ story.append(Paragraph(
     ParagraphStyle("rodape", parent=BASE["Normal"], fontSize=8,
                    alignment=TA_CENTER, textColor=colors.HexColor("#666666"))))
 
-# ── Gera PDF ─────────────────────────────────────────────────────────────────
+# -- Gera PDF -----------------------------------------------------------------
 doc = SimpleDocTemplate(
     str(OUT), pagesize=A4,
     leftMargin=2.5*cm, rightMargin=2.5*cm,
