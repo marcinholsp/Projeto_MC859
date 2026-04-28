@@ -1,0 +1,248 @@
+2026-04-27 16:13:07,590 [INFO] ==================================================
+2026-04-27 16:13:07,590 [INFO] INICIANDO CONSTRUÇÃO DO GRAFO DE DEPENDÊNCIAS PyPI
+2026-04-27 16:13:07,591 [INFO]   top_n=8000  max_nodes=100000  workers=20
+2026-04-27 16:13:07,591 [INFO] ==================================================
+2026-04-27 16:13:07,591 [INFO] Buscando top 8000 pacotes em https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json (tentativa 1/3)
+2026-04-27 16:13:08,840 [INFO] 8000 pacotes obtidos.
+2026-04-27 16:15:29,325 [INFO] BFS concluído: 8406 pacotes processados.
+2026-04-27 16:15:29,332 [INFO] ──────────────────────────────────────────────────
+2026-04-27 16:15:29,332 [INFO] ANÁLISE DO GRAFO
+2026-04-27 16:15:29,332 [INFO]   Vértices         : 8,405
+2026-04-27 16:15:29,333 [INFO]   Arestas          : 26,037
+2026-04-27 16:15:29,333 [INFO]   Grau médio       : 6.20
+2026-04-27 16:15:29,348 [INFO]   CFCs totais      : 8,387
+2026-04-27 16:15:29,348 [INFO]   Maior CFC        : 8 vértices
+2026-04-27 16:15:29,348 [INFO]   CFCs singleton   : 8,375
+2026-04-27 16:15:29,351 [INFO]   Top 10 mais dependidos (in-degree):
+2026-04-27 16:15:29,352 [INFO]     typing-extensions                   in-degree=1337
+2026-04-27 16:15:29,352 [INFO]     requests                            in-degree=814
+2026-04-27 16:15:29,352 [INFO]     numpy                               in-degree=737
+2026-04-27 16:15:29,352 [INFO]     pydantic                            in-degree=493
+2026-04-27 16:15:29,352 [INFO]     packaging                           in-degree=478
+2026-04-27 16:15:29,353 [INFO]     pyyaml                              in-degree=411
+2026-04-27 16:15:29,353 [INFO]     click                               in-degree=291
+2026-04-27 16:15:29,353 [INFO]     python-dateutil                     in-degree=276
+2026-04-27 16:15:29,353 [INFO]     httpx                               in-degree=273
+2026-04-27 16:15:29,354 [INFO]     pandas                              in-degree=270
+2026-04-27 16:15:29,363 [INFO]   CCFs (fracas)    : 1,118
+2026-04-27 16:15:29,363 [INFO]   Maior CCF        : 7,222 vértices
+2026-04-27 16:15:29,363 [INFO] ──────────────────────────────────────────────────
+2026-04-27 16:15:29,366 [INFO] Estatísticas salvas em C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\stats.json
+2026-04-27 16:15:29,399 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml ...
+2026-04-27 16:15:30,979 [INFO]   ✓ 3.5 MB
+2026-04-27 16:15:30,979 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.gexf ...
+2026-04-27 16:15:31,293 [INFO]   ✓ 4.8 MB
+2026-04-27 16:15:31,293 [INFO] CONCLUÍDO!
+2026-04-27 16:15:31,753 [INFO] ==================================================
+2026-04-27 16:15:31,753 [INFO] INICIANDO CONSTRUÇÃO DO GRAFO DE DEPENDÊNCIAS PyPI
+2026-04-27 16:15:31,754 [INFO]   top_n=8000  max_nodes=100000  workers=20
+2026-04-27 16:15:31,754 [INFO] ==================================================
+2026-04-27 16:15:31,754 [INFO] Buscando top 8000 pacotes em https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json (tentativa 1/3)
+2026-04-27 16:15:32,622 [INFO] 8000 pacotes obtidos.
+2026-04-27 16:18:24,509 [INFO] BFS concluído: 8406 pacotes processados.
+2026-04-27 16:18:24,513 [INFO] ──────────────────────────────────────────────────
+2026-04-27 16:18:24,513 [INFO] ANÁLISE DO GRAFO
+2026-04-27 16:18:24,513 [INFO]   Vértices         : 8,405
+2026-04-27 16:18:24,513 [INFO]   Arestas          : 26,037
+2026-04-27 16:18:24,514 [INFO]   Grau médio       : 6.20
+2026-04-27 16:18:24,527 [INFO]   CFCs totais      : 8,387
+2026-04-27 16:18:24,528 [INFO]   Maior CFC        : 8 vértices
+2026-04-27 16:18:24,529 [INFO]   CFCs singleton   : 8,375
+2026-04-27 16:18:24,533 [INFO]   Top 10 mais dependidos (in-degree):
+2026-04-27 16:18:24,533 [INFO]     typing-extensions                   in-degree=1337
+2026-04-27 16:18:24,533 [INFO]     requests                            in-degree=814
+2026-04-27 16:18:24,533 [INFO]     numpy                               in-degree=737
+2026-04-27 16:18:24,533 [INFO]     pydantic                            in-degree=493
+2026-04-27 16:18:24,534 [INFO]     packaging                           in-degree=478
+2026-04-27 16:18:24,534 [INFO]     pyyaml                              in-degree=411
+2026-04-27 16:18:24,534 [INFO]     click                               in-degree=291
+2026-04-27 16:18:24,534 [INFO]     python-dateutil                     in-degree=276
+2026-04-27 16:18:24,535 [INFO]     httpx                               in-degree=273
+2026-04-27 16:18:24,535 [INFO]     pandas                              in-degree=270
+2026-04-27 16:18:24,543 [INFO]   CCFs (fracas)    : 1,118
+2026-04-27 16:18:24,544 [INFO]   Maior CCF        : 7,222 vértices
+2026-04-27 16:18:24,544 [INFO] ──────────────────────────────────────────────────
+2026-04-27 16:18:24,546 [INFO] Estatísticas salvas em C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\stats.json
+2026-04-27 16:18:24,595 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml ...
+2026-04-27 16:18:26,703 [INFO]   ✓ 3.5 MB
+2026-04-27 16:18:26,704 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.gexf ...
+2026-04-27 16:18:27,033 [INFO]   ✓ 4.8 MB
+2026-04-27 16:18:27,033 [INFO] CONCLUÍDO!
+2026-04-27 18:31:48,071 [INFO] ==================================================
+2026-04-27 18:31:48,072 [INFO] INICIANDO CONSTRUÇÃO DO GRAFO DE DEPENDÊNCIAS PyPI
+2026-04-27 18:31:48,072 [INFO]   top_n=8000  max_nodes=100000  workers=20
+2026-04-27 18:31:48,072 [INFO] ==================================================
+2026-04-27 18:31:48,072 [INFO] Buscando top 8000 pacotes em https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json (tentativa 1/3)
+2026-04-27 18:31:49,242 [INFO] 8000 pacotes obtidos.
+2026-04-27 18:33:45,449 [INFO] BFS concluído: 8406 pacotes processados.
+2026-04-27 18:33:45,452 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:33:45,453 [INFO] ANÁLISE DO GRAFO
+2026-04-27 18:33:45,453 [INFO]   Vértices         : 8,405
+2026-04-27 18:33:45,453 [INFO]   Arestas          : 26,050
+2026-04-27 18:33:45,453 [INFO]   Grau médio       : 6.20
+2026-04-27 18:33:45,473 [INFO]   CFCs totais      : 8,387
+2026-04-27 18:33:45,473 [INFO]   Maior CFC        : 8 vértices
+2026-04-27 18:33:45,473 [INFO]   CFCs singleton   : 8,375
+2026-04-27 18:33:45,480 [INFO]   Top 10 mais dependidos (in-degree):
+2026-04-27 18:33:45,481 [INFO]     typing-extensions                   in-degree=1337
+2026-04-27 18:33:45,481 [INFO]     requests                            in-degree=814
+2026-04-27 18:33:45,481 [INFO]     numpy                               in-degree=737
+2026-04-27 18:33:45,481 [INFO]     pydantic                            in-degree=493
+2026-04-27 18:33:45,482 [INFO]     packaging                           in-degree=478
+2026-04-27 18:33:45,482 [INFO]     pyyaml                              in-degree=411
+2026-04-27 18:33:45,482 [INFO]     click                               in-degree=291
+2026-04-27 18:33:45,482 [INFO]     python-dateutil                     in-degree=276
+2026-04-27 18:33:45,482 [INFO]     httpx                               in-degree=273
+2026-04-27 18:33:45,483 [INFO]     pandas                              in-degree=270
+2026-04-27 18:33:45,494 [INFO]   CCFs (fracas)    : 1,118
+2026-04-27 18:33:45,495 [INFO]   Maior CCF        : 7,222 vértices
+2026-04-27 18:33:45,495 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:33:45,500 [INFO] Estatísticas salvas em C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\stats.json
+2026-04-27 18:33:45,542 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml ...
+2026-04-27 18:33:45,981 [INFO]   ✓ 3.5 MB
+2026-04-27 18:33:45,981 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.gexf ...
+2026-04-27 18:33:46,336 [INFO]   ✓ 4.8 MB
+2026-04-27 18:33:46,336 [INFO] CONCLUÍDO!
+2026-04-27 18:33:46,924 [INFO] ==================================================
+2026-04-27 18:33:46,925 [INFO] INICIANDO CONSTRUÇÃO DO GRAFO DE DEPENDÊNCIAS PyPI
+2026-04-27 18:33:46,925 [INFO]   top_n=8000  max_nodes=100000  workers=20
+2026-04-27 18:33:46,925 [INFO] ==================================================
+2026-04-27 18:33:46,925 [INFO] Buscando top 8000 pacotes em https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json (tentativa 1/3)
+2026-04-27 18:33:47,675 [INFO] 8000 pacotes obtidos.
+2026-04-27 18:35:39,901 [INFO] BFS concluído: 8406 pacotes processados.
+2026-04-27 18:35:39,905 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:35:39,905 [INFO] ANÁLISE DO GRAFO
+2026-04-27 18:35:39,905 [INFO]   Vértices         : 8,405
+2026-04-27 18:35:39,905 [INFO]   Arestas          : 26,050
+2026-04-27 18:35:39,906 [INFO]   Grau médio       : 6.20
+2026-04-27 18:35:39,937 [INFO]   CFCs totais      : 8,387
+2026-04-27 18:35:39,937 [INFO]   Maior CFC        : 8 vértices
+2026-04-27 18:35:39,937 [INFO]   CFCs singleton   : 8,375
+2026-04-27 18:35:39,940 [INFO]   Top 10 mais dependidos (in-degree):
+2026-04-27 18:35:39,940 [INFO]     typing-extensions                   in-degree=1337
+2026-04-27 18:35:39,941 [INFO]     requests                            in-degree=814
+2026-04-27 18:35:39,941 [INFO]     numpy                               in-degree=737
+2026-04-27 18:35:39,941 [INFO]     pydantic                            in-degree=493
+2026-04-27 18:35:39,941 [INFO]     packaging                           in-degree=478
+2026-04-27 18:35:39,942 [INFO]     pyyaml                              in-degree=411
+2026-04-27 18:35:39,942 [INFO]     click                               in-degree=291
+2026-04-27 18:35:39,942 [INFO]     python-dateutil                     in-degree=276
+2026-04-27 18:35:39,942 [INFO]     httpx                               in-degree=273
+2026-04-27 18:35:39,942 [INFO]     pandas                              in-degree=270
+2026-04-27 18:35:39,952 [INFO]   CCFs (fracas)    : 1,118
+2026-04-27 18:35:39,952 [INFO]   Maior CCF        : 7,222 vértices
+2026-04-27 18:35:39,952 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:35:39,955 [INFO] Estatísticas salvas em C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\stats.json
+2026-04-27 18:35:39,993 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml ...
+2026-04-27 18:35:40,264 [INFO]   ✓ 3.5 MB
+2026-04-27 18:35:40,264 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.gexf ...
+2026-04-27 18:35:40,607 [INFO]   ✓ 4.8 MB
+2026-04-27 18:35:40,608 [INFO] CONCLUÍDO!
+2026-04-27 18:35:41,085 [INFO] ==================================================
+2026-04-27 18:35:41,086 [INFO] INICIANDO CONSTRUÇÃO DO GRAFO DE DEPENDÊNCIAS PyPI
+2026-04-27 18:35:41,086 [INFO]   top_n=8000  max_nodes=100000  workers=20
+2026-04-27 18:35:41,086 [INFO] ==================================================
+2026-04-27 18:35:41,087 [INFO] Buscando top 8000 pacotes em https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json (tentativa 1/3)
+2026-04-27 18:35:41,723 [INFO] 8000 pacotes obtidos.
+2026-04-27 18:36:11,368 [INFO] ==================================================
+2026-04-27 18:36:11,368 [INFO] INICIANDO CONSTRUÇÃO DO GRAFO DE DEPENDÊNCIAS PyPI
+2026-04-27 18:36:11,368 [INFO]   top_n=8000  max_nodes=100000  workers=20
+2026-04-27 18:36:11,368 [INFO] ==================================================
+2026-04-27 18:36:11,368 [INFO] Buscando top 8000 pacotes em https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json (tentativa 1/3)
+2026-04-27 18:36:13,335 [INFO] 8000 pacotes obtidos.
+2026-04-27 18:38:56,281 [INFO] BFS concluído: 8406 pacotes processados.
+2026-04-27 18:38:56,286 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:38:56,287 [INFO] ANÁLISE DO GRAFO
+2026-04-27 18:38:56,287 [INFO]   Vértices         : 8,405
+2026-04-27 18:38:56,287 [INFO]   Arestas          : 26,050
+2026-04-27 18:38:56,287 [INFO]   Grau médio       : 6.20
+2026-04-27 18:38:56,311 [INFO]   CFCs totais      : 8,387
+2026-04-27 18:38:56,311 [INFO]   Maior CFC        : 8 vértices
+2026-04-27 18:38:56,311 [INFO]   CFCs singleton   : 8,375
+2026-04-27 18:38:56,315 [INFO]   Top 10 mais dependidos (in-degree):
+2026-04-27 18:38:56,315 [INFO]     typing-extensions                   in-degree=1337
+2026-04-27 18:38:56,315 [INFO]     requests                            in-degree=814
+2026-04-27 18:38:56,315 [INFO]     numpy                               in-degree=737
+2026-04-27 18:38:56,315 [INFO]     pydantic                            in-degree=493
+2026-04-27 18:38:56,316 [INFO]     packaging                           in-degree=478
+2026-04-27 18:38:56,316 [INFO]     pyyaml                              in-degree=411
+2026-04-27 18:38:56,316 [INFO]     click                               in-degree=291
+2026-04-27 18:38:56,316 [INFO]     python-dateutil                     in-degree=276
+2026-04-27 18:38:56,316 [INFO]     httpx                               in-degree=273
+2026-04-27 18:38:56,316 [INFO]     pandas                              in-degree=270
+2026-04-27 18:38:56,347 [INFO]   CCFs (fracas)    : 1,118
+2026-04-27 18:38:56,347 [INFO]   Maior CCF        : 7,222 vértices
+2026-04-27 18:38:56,347 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:38:56,351 [INFO] Estatísticas salvas em C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\stats.json
+2026-04-27 18:38:56,411 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml ...
+2026-04-27 18:38:56,869 [INFO]   ✓ 3.5 MB
+2026-04-27 18:38:56,870 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.gexf ...
+2026-04-27 18:38:57,342 [INFO]   ✓ 4.8 MB
+2026-04-27 18:38:57,342 [INFO] CONCLUÍDO!
+2026-04-27 18:39:10,091 [INFO] BFS concluído: 8406 pacotes processados.
+2026-04-27 18:39:10,094 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:39:10,097 [INFO] ANÁLISE DO GRAFO
+2026-04-27 18:39:10,097 [INFO]   Vértices         : 8,405
+2026-04-27 18:39:10,097 [INFO]   Arestas          : 26,050
+2026-04-27 18:39:10,097 [INFO]   Grau médio       : 6.20
+2026-04-27 18:39:10,115 [INFO]   CFCs totais      : 8,387
+2026-04-27 18:39:10,115 [INFO]   Maior CFC        : 8 vértices
+2026-04-27 18:39:10,115 [INFO]   CFCs singleton   : 8,375
+2026-04-27 18:39:10,123 [INFO]   Top 10 mais dependidos (in-degree):
+2026-04-27 18:39:10,123 [INFO]     typing-extensions                   in-degree=1337
+2026-04-27 18:39:10,123 [INFO]     requests                            in-degree=814
+2026-04-27 18:39:10,123 [INFO]     numpy                               in-degree=737
+2026-04-27 18:39:10,123 [INFO]     pydantic                            in-degree=493
+2026-04-27 18:39:10,123 [INFO]     packaging                           in-degree=478
+2026-04-27 18:39:10,123 [INFO]     pyyaml                              in-degree=411
+2026-04-27 18:39:10,123 [INFO]     click                               in-degree=291
+2026-04-27 18:39:10,123 [INFO]     python-dateutil                     in-degree=276
+2026-04-27 18:39:10,123 [INFO]     httpx                               in-degree=273
+2026-04-27 18:39:10,123 [INFO]     pandas                              in-degree=270
+2026-04-27 18:39:10,132 [INFO]   CCFs (fracas)    : 1,118
+2026-04-27 18:39:10,132 [INFO]   Maior CCF        : 7,222 vértices
+2026-04-27 18:39:10,132 [INFO] ──────────────────────────────────────────────────
+2026-04-27 18:39:10,138 [INFO] Estatísticas salvas em C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\stats.json
+2026-04-27 18:39:10,180 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml ...
+2026-04-27 18:39:10,562 [INFO]   ✓ 3.5 MB
+2026-04-27 18:39:10,562 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.gexf ...
+2026-04-27 18:39:10,997 [INFO]   ✓ 4.8 MB
+2026-04-27 18:39:10,997 [INFO] CONCLUÍDO!
+2026-04-27 18:55:59,978 [INFO] ==================================================
+2026-04-27 18:55:59,978 [INFO] INICIANDO CONSTRUÇÃO DO GRAFO DE DEPENDÊNCIAS PyPI
+2026-04-27 18:55:59,978 [INFO]   top_n=8000  extra=40000  max_nodes=100000  workers=20
+2026-04-27 18:55:59,978 [INFO] ==================================================
+2026-04-27 18:55:59,978 [INFO] Buscando top 8000 pacotes em https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json (tentativa 1/3)
+2026-04-27 18:56:00,599 [INFO] 8000 pacotes obtidos.
+2026-04-27 18:56:00,601 [INFO] Buscando PyPI Simple Index (tentativa 1/3)...
+2026-04-27 18:56:03,942 [INFO] PyPI Simple Index: 795,427 pacotes totais, usando 48,000.
+2026-04-27 18:56:04,013 [INFO] Sementes: 8,000 (top downloads) + 40,000 (simple index) = 48,000 total
+2026-04-27 19:07:06,229 [INFO] BFS concluído: 55730 pacotes processados.
+2026-04-27 19:07:06,258 [INFO] ──────────────────────────────────────────────────
+2026-04-27 19:07:06,261 [INFO] ANÁLISE DO GRAFO
+2026-04-27 19:07:06,262 [INFO]   Vértices         : 54,406
+2026-04-27 19:07:06,262 [INFO]   Arestas          : 178,193
+2026-04-27 19:07:06,262 [INFO]   Grau médio       : 6.55
+2026-04-27 19:07:06,514 [INFO]   CFCs totais      : 54,298
+2026-04-27 19:07:06,514 [INFO]   Maior CFC        : 11 vértices
+2026-04-27 19:07:06,514 [INFO]   CFCs singleton   : 54,238
+2026-04-27 19:07:06,545 [INFO]   Top 10 mais dependidos (in-degree):
+2026-04-27 19:07:06,545 [INFO]     numpy                               in-degree=6479
+2026-04-27 19:07:06,545 [INFO]     requests                            in-degree=6463
+2026-04-27 19:07:06,545 [INFO]     pydantic                            in-degree=4461
+2026-04-27 19:07:06,546 [INFO]     pandas                              in-degree=3746
+2026-04-27 19:07:06,546 [INFO]     pyyaml                              in-degree=3348
+2026-04-27 19:07:06,546 [INFO]     typing-extensions                   in-degree=2829
+2026-04-27 19:07:06,546 [INFO]     httpx                               in-degree=2692
+2026-04-27 19:07:06,546 [INFO]     click                               in-degree=2375
+2026-04-27 19:07:06,546 [INFO]     scipy                               in-degree=2345
+2026-04-27 19:07:06,546 [INFO]     matplotlib                          in-degree=2060
+2026-04-27 19:07:06,676 [INFO]   CCFs (fracas)    : 14,003
+2026-04-27 19:07:06,676 [INFO]   Maior CCF        : 40,105 vértices
+2026-04-27 19:07:06,676 [INFO] ──────────────────────────────────────────────────
+2026-04-27 19:07:06,694 [INFO] Estatísticas salvas em C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\stats.json
+2026-04-27 19:07:07,141 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml ...
+2026-04-27 19:07:09,678 [INFO]   ✓ 22.9 MB
+2026-04-27 19:07:09,678 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.gexf ...
+2026-04-27 19:07:12,818 [INFO]   ✓ 31.5 MB
+2026-04-27 19:07:12,818 [INFO] CONCLUÍDO!

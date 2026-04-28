@@ -1,96 +1,96 @@
 {
-  "n_vertices": 3359,
-  "n_arestas": 9659,
-  "grau_medio": 5.75,
-  "in_degree_medio": 2.88,
-  "out_degree_medio": 2.88,
-  "in_degree_max": 495,
-  "out_degree_max": 162,
-  "n_sccs": 3351,
-  "maior_scc": 8,
-  "n_singletons_scc": 3349,
-  "n_wccs": 375,
-  "maior_wcc": 2948,
+  "n_vertices": 54406,
+  "n_arestas": 178193,
+  "grau_medio": 6.55,
+  "in_degree_medio": 3.28,
+  "out_degree_medio": 3.28,
+  "in_degree_max": 6479,
+  "out_degree_max": 1000,
+  "n_sccs": 54298,
+  "maior_scc": 11,
+  "n_singletons_scc": 54238,
+  "n_wccs": 14003,
+  "maior_wcc": 40105,
   "top_20_in_degree": [
     [
-      "typing-extensions",
-      495
+      "numpy",
+      6479
     ],
     [
       "requests",
-      253
-    ],
-    [
-      "packaging",
-      215
-    ],
-    [
-      "numpy",
-      215
-    ],
-    [
-      "pyobjc-core",
-      163
+      6463
     ],
     [
       "pydantic",
-      161
+      4461
     ],
     [
-      "pyobjc-framework-cocoa",
-      150
+      "pandas",
+      3746
     ],
     [
       "pyyaml",
-      138
+      3348
     ],
     [
-      "protobuf",
-      129
-    ],
-    [
-      "opentelemetry-api",
-      125
+      "typing-extensions",
+      2829
     ],
     [
       "httpx",
-      106
-    ],
-    [
-      "python-dateutil",
-      102
+      2692
     ],
     [
       "click",
-      99
+      2375
     ],
     [
-      "grpcio",
-      90
+      "scipy",
+      2345
     ],
     [
-      "urllib3",
-      82
+      "matplotlib",
+      2060
     ],
     [
-      "cryptography",
-      82
+      "rich",
+      1976
+    ],
+    [
+      "aiohttp",
+      1931
+    ],
+    [
+      "tqdm",
+      1816
+    ],
+    [
+      "python-dotenv",
+      1690
+    ],
+    [
+      "pillow",
+      1274
     ],
     [
       "jinja2",
-      81
+      1257
     ],
     [
-      "opentelemetry-instrumentation",
-      78
+      "python-dateutil",
+      1229
     ],
     [
-      "google-auth",
-      76
+      "scikit-learn",
+      1229
     ],
     [
-      "six",
-      75
+      "packaging",
+      1187
+    ],
+    [
+      "typer",
+      1130
     ]
   ]
 }

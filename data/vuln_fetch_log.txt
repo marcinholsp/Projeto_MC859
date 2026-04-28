@@ -98,3 +98,49 @@
 2026-04-23 08:27:10,068 [INFO]   Altos    (CVSS 7–9)          : 0
 2026-04-23 08:27:10,068 [INFO]   Top 10 por CVSS:
 2026-04-23 08:27:10,068 [INFO] ───────────────────────────────────────────────────────
+2026-04-27 18:40:10,755 [INFO] =======================================================
+2026-04-27 18:40:10,755 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-27 18:40:10,755 [INFO] =======================================================
+2026-04-27 18:40:10,755 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml
+2026-04-27 18:40:11,127 [INFO]   8,405 nós | 26,050 arestas
+2026-04-27 18:40:11,127 [INFO] Consultando OSV API para 8,405 pacotes em lotes de 100...
+2026-04-27 18:40:29,748 [INFO] =======================================================
+2026-04-27 18:40:29,752 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-27 18:40:29,752 [INFO] =======================================================
+2026-04-27 18:40:29,752 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml
+2026-04-27 18:40:30,130 [INFO]   8,405 nós | 26,050 arestas
+2026-04-27 18:40:30,131 [INFO] Consultando OSV API para 8,405 pacotes em lotes de 100...
+2026-04-27 18:41:31,356 [INFO] OSV concluído: 516 pacotes com ao menos 1 vulnerabilidade.
+2026-04-27 18:41:31,357 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_vulns.json ...
+2026-04-27 18:41:31,423 [INFO]   ✓ 1.1 MB
+2026-04-27 18:41:31,423 [INFO] Anotando nós do grafo com dados de vulnerabilidade...
+2026-04-27 18:41:31,436 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph_vuln.graphml ...
+2026-04-27 18:41:31,829 [INFO]   ✓ 4.5 MB
+2026-04-27 18:41:31,836 [INFO] ───────────────────────────────────────────────────────
+2026-04-27 18:41:31,836 [INFO] RESUMO DE VULNERABILIDADES
+2026-04-27 18:41:31,836 [INFO]   Total de pacotes analisados : 8,405
+2026-04-27 18:41:31,836 [INFO]   Com ao menos 1 CVE          : 516 (6.1%)
+2026-04-27 18:41:31,836 [INFO]   Críticos (CVSS ≥ 9.0)       : 0
+2026-04-27 18:41:31,836 [INFO]   Altos    (CVSS 7–9)          : 0
+2026-04-27 18:41:31,836 [INFO]   Top 10 por CVSS:
+2026-04-27 18:41:31,838 [INFO] ───────────────────────────────────────────────────────
+2026-04-27 19:09:53,005 [INFO] =======================================================
+2026-04-27 19:09:53,005 [INFO] COLETA DE VULNERABILIDADES — OSV API
+2026-04-27 19:09:53,005 [INFO] =======================================================
+2026-04-27 19:09:53,005 [INFO] Carregando grafo: C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph.graphml
+2026-04-27 19:09:55,602 [INFO]   54,406 nós | 178,193 arestas
+2026-04-27 19:09:55,603 [INFO] Consultando OSV API para 54,406 pacotes em lotes de 100...
+2026-04-27 19:15:19,757 [INFO] OSV concluído: 672 pacotes com ao menos 1 vulnerabilidade.
+2026-04-27 19:15:19,760 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_vulns.json ...
+2026-04-27 19:15:20,160 [INFO]   [OK] 6.6 MB
+2026-04-27 19:15:20,160 [INFO] Anotando nós do grafo com dados de vulnerabilidade...
+2026-04-27 19:15:20,254 [INFO] Salvando C:\Users\USER\Desktop\Projeto-MC859\.claude\worktrees\crazy-payne-b458ef\data\pypi_dependency_graph_vuln.graphml ...
+2026-04-27 19:15:23,389 [INFO]   [OK] 29.0 MB
+2026-04-27 19:15:23,411 [INFO] -------------------------------------------------------
+2026-04-27 19:15:23,411 [INFO] RESUMO DE VULNERABILIDADES
+2026-04-27 19:15:23,411 [INFO]   Total de pacotes analisados : 54,406
+2026-04-27 19:15:23,411 [INFO]   Com ao menos 1 CVE          : 672 (1.2%)
+2026-04-27 19:15:23,411 [INFO]   Críticos (CVSS ≥ 9.0)       : 0
+2026-04-27 19:15:23,411 [INFO]   Altos    (CVSS 7–9)          : 0
+2026-04-27 19:15:23,411 [INFO]   Top 10 por CVSS:
+2026-04-27 19:15:23,432 [INFO] -------------------------------------------------------
