@@ -1,0 +1,178 @@
+{
+  "methodology": "Validação tripla: (1) Precision@K/Recall@K do ranking por risk_score contra lista curada de pacotes com incidentes reais; (2) correlação de Spearman entre risk_score e proxies independentes (downloads, CVSS) para mostrar que o ranking não é trivialmente explicável por um fator; (3) estudos de caso com alcance de propagação (BFS/IC) derivado do grafo.",
+  "seed": 42,
+  "k_values": [
+    10,
+    20,
+    50
+  ],
+  "n_ranked_packages": 50,
+  "ground_truth_validation": {
+    "ground_truth_packages": {
+      "urllib3": "CVE-2023-43804 / CVE-2024-37891 — vazamento de cookies/Proxy-Auth em redirect (cliente HTTP onipresente)",
+      "requests": "CVE-2023-32681 — vazamento de Proxy-Authorization em redirect HTTPS->HTTP",
+      "pyyaml": "CVE-2020-14343 / CVE-2017-18342 — execução de código via yaml.load() inseguro (full_load)",
+      "cryptography": "CVE-2023-50782 / CVE-2023-23931 — falhas em primitivas criptográficas (Bleichenbacher / corrupção de memória)",
+      "jinja2": "CVE-2024-22195 / CVE-2024-34064 — XSS via atributos em templates (xmlattr)",
+      "flask": "CVE-2023-30861 — vazamento de cookie de sessão por cache de resposta",
+      "django": "CVE-2024-24680 / CVE-2022-28346 — DoS / SQL injection (vetor de QuerySet.annotate)",
+      "setuptools": "CVE-2024-6345 / CVE-2022-40897 — RCE via download de pacotes / ReDoS (cadeia de build onipresente)",
+      "numpy": "CVE-2021-33430 / CVE-2021-34141 — buffer overflow / path traversal em load",
+      "pillow": "CVE-2023-44271 / CVE-2022-22817 — DoS por alocação de memória / eval em ImageMath",
+      "paramiko": "CVE-2023-48795 (Terrapin) / CVE-2022-24302 — downgrade de SSH / race em chave privada",
+      "lxml": "CVE-2022-2309 / CVE-2021-43818 — NULL deref / XSS via HTML cleaner (lxml.html.clean)",
+      "werkzeug": "CVE-2023-25577 / CVE-2024-34069 — DoS por multipart / RCE no debugger (PIN)"
+    },
+    "n_ground_truth": 13,
+    "n_found_in_ranking": 13,
+    "precision_recall_at_k": {
+      "10": {
+        "precision": 0.5,
+        "recall": 0.3846,
+        "hits": 5,
+        "k_effective": 10,
+        "hit_packages": [
+          "urllib3",
+          "numpy",
+          "pyyaml",
+          "cryptography",
+          "pillow"
+        ]
+      },
+      "20": {
+        "precision": 0.45,
+        "recall": 0.6923,
+        "hits": 9,
+        "k_effective": 20,
+        "hit_packages": [
+          "urllib3",
+          "numpy",
+          "pyyaml",
+          "cryptography",
+          "pillow",
+          "setuptools",
+          "jinja2",
+          "requests",
+          "django"
+        ]
+      },
+      "50": {
+        "precision": 0.26,
+        "recall": 1.0,
+        "hits": 13,
+        "k_effective": 50,
+        "hit_packages": [
+          "urllib3",
+          "numpy",
+          "pyyaml",
+          "cryptography",
+          "pillow",
+          "setuptools",
+          "jinja2",
+          "requests",
+          "django",
+          "paramiko",
+          "werkzeug",
+          "flask",
+          "lxml"
+        ]
+      }
+    },
+    "ranking_positions": {
+      "urllib3": 1,
+      "requests": 17,
+      "pyyaml": 3,
+      "cryptography": 4,
+      "jinja2": 14,
+      "flask": 32,
+      "django": 19,
+      "setuptools": 11,
+      "numpy": 2,
+      "pillow": 10,
+      "paramiko": 24,
+      "lxml": 46,
+      "werkzeug": 29
+    }
+  },
+  "correlation_validation": {
+    "note": "Spearman calculado sobre os pacotes ranqueados (top-50), já pré-selecionados por risco: há restrição de amplitude que tende a atenuar as correlações.",
+    "correlations": {
+      "risk_vs_downloads": {
+        "rho": 0.5529,
+        "p_value": 3.125e-05,
+        "n": 50
+      },
+      "risk_vs_cvss": {
+        "rho": 0.2768,
+        "p_value": 0.05162,
+        "n": 50
+      },
+      "risk_vs_ic_active_dl": {
+        "rho": 0.5922,
+        "p_value": 5.888e-06,
+        "n": 50
+      },
+      "risk_vs_bfs_reach": {
+        "rho": 0.5656,
+        "p_value": 1.867e-05,
+        "n": 50
+      },
+      "downloads_vs_cvss": {
+        "rho": -0.4205,
+        "p_value": 0.002364,
+        "n": 50
+      }
+    },
+    "interpretation": "risk_score correlaciona-se moderadamente com downloads (ρ=+0.55) e com CVSS (ρ=+0.28); como nenhuma das duas é ~1.0, o ranking não é explicado por um único fator. O termo de propagação IC (ic_active_dl) contribui de forma independente (ρ=+0.59 com risk_score)."
+  },
+  "case_studies": {
+    "cases": {
+      "urllib3": {
+        "incident": "CVE-2023-43804 — urllib3 reenviava o cabeçalho Cookie em redirects entre origens (vazamento de credenciais).",
+        "severity": "Alta. urllib3 é a base de requests e de praticamente todo cliente HTTP Python; é dependência transitiva quase universal.",
+        "real_magnitude": "Nº exato de projetos afetados: a confirmar (OSV lista milhares de dependentes diretos no PyPI/GitHub).",
+        "cvss": 9.8,
+        "bfs_reach_graph": 14681,
+        "bfs_affected_downloads": 22826473851,
+        "max_depth": 19,
+        "ic_reach_montecarlo": 955.0,
+        "ic_active_downloads": 2733272756,
+        "bfs_reach_vuln_stats": 14681,
+        "risk_score": 4488.15,
+        "rank_in_model": 1,
+        "bfs_consistency_check": "OK (bate com vuln_stats.json)"
+      },
+      "pyyaml": {
+        "incident": "CVE-2020-14343 — yaml.load() sem SafeLoader permitia execução arbitrária de código ao desserializar YAML não confiável.",
+        "severity": "Crítica para qualquer serviço que parseia YAML de fontes externas (configs, pipelines CI/CD, manifests).",
+        "real_magnitude": "Nº exato de projetos afetados: a confirmar (PyYAML é dependência de ecossistemas inteiros: Ansible, AWS CLI, etc.).",
+        "cvss": 9.8,
+        "bfs_reach_graph": 8699,
+        "bfs_affected_downloads": 5708341556,
+        "max_depth": 18,
+        "ic_reach_montecarlo": 907.3,
+        "ic_active_downloads": 655187070,
+        "bfs_reach_vuln_stats": 8699,
+        "risk_score": 4089.77,
+        "rank_in_model": 3,
+        "bfs_consistency_check": "OK (bate com vuln_stats.json)"
+      },
+      "requests": {
+        "incident": "CVE-2023-32681 — requests vazava o cabeçalho Proxy-Authorization em redirects HTTPS->HTTP.",
+        "severity": "Alta. requests é uma das bibliotecas mais baixadas do PyPI; centro de uma vasta sub-rede de dependentes.",
+        "real_magnitude": "Nº exato de projetos afetados: a confirmar.",
+        "cvss": 7.5,
+        "bfs_reach_graph": 13839,
+        "bfs_affected_downloads": 14462139018,
+        "max_depth": 18,
+        "ic_reach_montecarlo": 2800.6,
+        "ic_active_downloads": 2565151755,
+        "bfs_reach_vuln_stats": 13839,
+        "risk_score": 3408.92,
+        "rank_in_model": 17,
+        "bfs_consistency_check": "OK (bate com vuln_stats.json)"
+      }
+    },
+    "commentary": "Acertos: os três pacotes-caso (urllib3, pyyaml, requests) são apontados pelo modelo no topo do ranking e exibem alcance de propagação alto, coerente com seu papel de dependências quase universais — consistente com a gravidade e amplitude reais dos incidentes. O alcance BFS captura o pior caso estrutural; o alcance IC, menor, estima o impacto esperado ponderado pelo uso real dos dependentes. Limitações: o grafo cobre um subconjunto do PyPI (pacotes-semente + dependências coletadas), então o alcance é um limite INFERIOR do real; números externos de projetos afetados não foram inseridos (marcados 'a confirmar'); e o IC depende da parametrização das probabilidades por downloads, que é uma aproximação."
+  }
+}

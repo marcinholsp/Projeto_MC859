@@ -1,0 +1,690 @@
+{
+  "n_communities": 63,
+  "modularity": 0.4976,
+  "largest_community": 7749,
+  "smallest_community": 3,
+  "median_community_size": 16,
+  "mean_community_size": 636.59,
+  "top_risk_communities": [
+    {
+      "community_id": 28,
+      "n_packages": 32,
+      "n_vulnerable": 3,
+      "frac_vulnerable": 0.0938,
+      "cvss_mean": 8.0,
+      "cvss_max": 8.8,
+      "total_downloads": 24723474,
+      "risk_score": 12.767,
+      "top_members": [
+        {
+          "package": "simpleeval",
+          "in_degree": 20,
+          "downloads": 20167335,
+          "max_cvss": 8.7,
+          "vulnerable": true
+        },
+        {
+          "package": "trytond",
+          "in_degree": 14,
+          "downloads": 72936,
+          "max_cvss": 8.8,
+          "vulnerable": true
+        },
+        {
+          "package": "python-sql",
+          "in_degree": 11,
+          "downloads": 69066,
+          "max_cvss": 6.5,
+          "vulnerable": true
+        },
+        {
+          "package": "python-stdnum",
+          "in_degree": 9,
+          "downloads": 3253377,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "trytond-company",
+          "in_degree": 7,
+          "downloads": 0,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "trytond-party",
+          "in_degree": 6,
+          "downloads": 0,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "trytond-currency",
+          "in_degree": 5,
+          "downloads": 0,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "trytond-product",
+          "in_degree": 5,
+          "downloads": 0,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 9,
+      "n_packages": 415,
+      "n_vulnerable": 26,
+      "frac_vulnerable": 0.0627,
+      "cvss_mean": 8.01,
+      "cvss_max": 9.9,
+      "total_downloads": 1736310120,
+      "risk_score": 10.673,
+      "top_members": [
+        {
+          "package": "setuptools",
+          "in_degree": 944,
+          "downloads": 1426110393,
+          "max_cvss": 8.8,
+          "vulnerable": true
+        },
+        {
+          "package": "zope-interface",
+          "in_degree": 115,
+          "downloads": 58762433,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "zope",
+          "in_degree": 98,
+          "downloads": 142230,
+          "max_cvss": 9.1,
+          "vulnerable": true
+        },
+        {
+          "package": "zope-component",
+          "in_degree": 59,
+          "downloads": 564275,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "products-genericsetup",
+          "in_degree": 54,
+          "downloads": 0,
+          "max_cvss": 6.9,
+          "vulnerable": true
+        },
+        {
+          "package": "plone-base",
+          "in_degree": 51,
+          "downloads": 0,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "products-cmfcore",
+          "in_degree": 42,
+          "downloads": 0,
+          "max_cvss": 8.7,
+          "vulnerable": true
+        },
+        {
+          "package": "zope-schema",
+          "in_degree": 40,
+          "downloads": 615011,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 11,
+      "n_packages": 481,
+      "n_vulnerable": 20,
+      "frac_vulnerable": 0.0416,
+      "cvss_mean": 7.94,
+      "cvss_max": 9.8,
+      "total_downloads": 710634460,
+      "risk_score": 6.733,
+      "top_members": [
+        {
+          "package": "jsonschema",
+          "in_degree": 674,
+          "downloads": 435638699,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "prettytable",
+          "in_degree": 113,
+          "downloads": 44485639,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "pbr",
+          "in_degree": 83,
+          "downloads": 30753891,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "arcade-tdk",
+          "in_degree": 51,
+          "downloads": 286834,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "ansible",
+          "in_degree": 49,
+          "downloads": 11359555,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "oslo-config",
+          "in_degree": 43,
+          "downloads": 1507258,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "stevedore",
+          "in_degree": 39,
+          "downloads": 27350535,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "oslo-utils",
+          "in_degree": 39,
+          "downloads": 1763024,
+          "max_cvss": 6.9,
+          "vulnerable": true
+        }
+      ]
+    },
+    {
+      "community_id": 0,
+      "n_packages": 5062,
+      "n_vulnerable": 167,
+      "frac_vulnerable": 0.033,
+      "cvss_mean": 8.01,
+      "cvss_max": 9.8,
+      "total_downloads": 58902215545,
+      "risk_score": 6.554,
+      "top_members": [
+        {
+          "package": "python-dateutil",
+          "in_degree": 1229,
+          "downloads": 963249707,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "packaging",
+          "in_degree": 1187,
+          "downloads": 1577819710,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "urllib3",
+          "in_degree": 913,
+          "downloads": 1424208495,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "six",
+          "in_degree": 821,
+          "downloads": 934334018,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "flask",
+          "in_degree": 593,
+          "downloads": 220208337,
+          "max_cvss": 8.7,
+          "vulnerable": true
+        },
+        {
+          "package": "colorama",
+          "in_degree": 575,
+          "downloads": 386047995,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "pytz",
+          "in_degree": 563,
+          "downloads": 486168815,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "importlib-metadata",
+          "in_degree": 503,
+          "downloads": 515193767,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 32,
+      "n_packages": 1090,
+      "n_vulnerable": 34,
+      "frac_vulnerable": 0.0312,
+      "cvss_mean": 8.51,
+      "cvss_max": 9.9,
+      "total_downloads": 2548144502,
+      "risk_score": 5.752,
+      "top_members": [
+        {
+          "package": "tabulate",
+          "in_degree": 427,
+          "downloads": 216147963,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "apache-airflow",
+          "in_degree": 416,
+          "downloads": 19589388,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "openpyxl",
+          "in_degree": 405,
+          "downloads": 259469076,
+          "max_cvss": 8.2,
+          "vulnerable": true
+        },
+        {
+          "package": "paramiko",
+          "in_degree": 131,
+          "downloads": 142228339,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "pymysql",
+          "in_degree": 110,
+          "downloads": 84229485,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "apache-airflow-providers-common-compat",
+          "in_degree": 105,
+          "downloads": 19137566,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "xlrd",
+          "in_degree": 88,
+          "downloads": 63832977,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "psycopg2",
+          "in_degree": 83,
+          "downloads": 43306730,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 24,
+      "n_packages": 131,
+      "n_vulnerable": 4,
+      "frac_vulnerable": 0.0305,
+      "cvss_mean": 8.0,
+      "cvss_max": 9.8,
+      "total_downloads": 141299455,
+      "risk_score": 4.584,
+      "top_members": [
+        {
+          "package": "antlr4-python3-runtime",
+          "in_degree": 53,
+          "downloads": 45135133,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "qiskit",
+          "in_degree": 27,
+          "downloads": 1016816,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "boltons",
+          "in_degree": 20,
+          "downloads": 16162906,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "z3-solver",
+          "in_degree": 16,
+          "downloads": 2141112,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "pybase64",
+          "in_degree": 14,
+          "downloads": 20588725,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "returns",
+          "in_degree": 12,
+          "downloads": 1050631,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "amazon-braket-sdk",
+          "in_degree": 10,
+          "downloads": 110961,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "dimod",
+          "in_degree": 9,
+          "downloads": 236554,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 1,
+      "n_packages": 1991,
+      "n_vulnerable": 45,
+      "frac_vulnerable": 0.0226,
+      "cvss_mean": 8.33,
+      "cvss_max": 10.0,
+      "total_downloads": 18468600683,
+      "risk_score": 4.451,
+      "top_members": [
+        {
+          "package": "protobuf",
+          "in_degree": 686,
+          "downloads": 659365339,
+          "max_cvss": 8.8,
+          "vulnerable": true
+        },
+        {
+          "package": "boto3",
+          "in_degree": 610,
+          "downloads": 1880218825,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "pyarrow",
+          "in_degree": 430,
+          "downloads": 332139916,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "grpcio",
+          "in_degree": 402,
+          "downloads": 349825011,
+          "max_cvss": 7.5,
+          "vulnerable": true
+        },
+        {
+          "package": "ipython",
+          "in_degree": 265,
+          "downloads": 126866839,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "google-auth",
+          "in_degree": 238,
+          "downloads": 414659276,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "fsspec",
+          "in_degree": 173,
+          "downloads": 632410423,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "google-api-core",
+          "in_degree": 158,
+          "downloads": 395240849,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 20,
+      "n_packages": 1073,
+      "n_vulnerable": 27,
+      "frac_vulnerable": 0.0252,
+      "cvss_mean": 7.33,
+      "cvss_max": 9.8,
+      "total_downloads": 723863277,
+      "risk_score": 3.761,
+      "top_members": [
+        {
+          "package": "django",
+          "in_degree": 480,
+          "downloads": 48600417,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "allianceauth",
+          "in_degree": 135,
+          "downloads": 196713,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "djangorestframework",
+          "in_degree": 87,
+          "downloads": 27936196,
+          "max_cvss": 6.1,
+          "vulnerable": true
+        },
+        {
+          "package": "arrow",
+          "in_degree": 84,
+          "downloads": 72754465,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "rdflib",
+          "in_degree": 73,
+          "downloads": 12071130,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "unidecode",
+          "in_degree": 71,
+          "downloads": 32096027,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "inflect",
+          "in_degree": 39,
+          "downloads": 26930504,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "graphql-core",
+          "in_degree": 35,
+          "downloads": 68048927,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 2,
+      "n_packages": 7749,
+      "n_vulnerable": 126,
+      "frac_vulnerable": 0.0163,
+      "cvss_mean": 8.21,
+      "cvss_max": 10.0,
+      "total_downloads": 20319622326,
+      "risk_score": 3.167,
+      "top_members": [
+        {
+          "package": "pydantic",
+          "in_degree": 4461,
+          "downloads": 762644114,
+          "max_cvss": 5.9,
+          "vulnerable": true
+        },
+        {
+          "package": "pyyaml",
+          "in_degree": 3348,
+          "downloads": 847114625,
+          "max_cvss": 9.8,
+          "vulnerable": true
+        },
+        {
+          "package": "httpx",
+          "in_degree": 2692,
+          "downloads": 501349000,
+          "max_cvss": 9.3,
+          "vulnerable": true
+        },
+        {
+          "package": "click",
+          "in_degree": 2375,
+          "downloads": 720442281,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "rich",
+          "in_degree": 1976,
+          "downloads": 454037818,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "python-dotenv",
+          "in_degree": 1690,
+          "downloads": 493197081,
+          "max_cvss": 6.6,
+          "vulnerable": true
+        },
+        {
+          "package": "typer",
+          "in_degree": 1130,
+          "downloads": 271976602,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "openai",
+          "in_degree": 1094,
+          "downloads": 232497463,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    },
+    {
+      "community_id": 27,
+      "n_packages": 169,
+      "n_vulnerable": 3,
+      "frac_vulnerable": 0.0178,
+      "cvss_mean": 7.23,
+      "cvss_max": 8.7,
+      "total_downloads": 205620691,
+      "risk_score": 2.458,
+      "top_members": [
+        {
+          "package": "streamlit",
+          "in_degree": 175,
+          "downloads": 32749276,
+          "max_cvss": 6.5,
+          "vulnerable": true
+        },
+        {
+          "package": "mkdocs",
+          "in_degree": 58,
+          "downloads": 16783181,
+          "max_cvss": 8.7,
+          "vulnerable": true
+        },
+        {
+          "package": "mkdocs-material",
+          "in_degree": 25,
+          "downloads": 18285440,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "mkdocstrings",
+          "in_degree": 17,
+          "downloads": 8141898,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "mkdocstrings-python",
+          "in_degree": 8,
+          "downloads": 11326663,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "pubchempy",
+          "in_degree": 8,
+          "downloads": 4405791,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "plotly-express",
+          "in_degree": 8,
+          "downloads": 1556865,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        },
+        {
+          "package": "langgraph-supervisor",
+          "in_degree": 7,
+          "downloads": 653685,
+          "max_cvss": 0.0,
+          "vulnerable": false
+        }
+      ]
+    }
+  ]
+}
